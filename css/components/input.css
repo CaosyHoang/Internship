@@ -1,0 +1,36 @@
+.input {
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.input__label {
+    font-weight: 500;
+}
+
+.input__data {
+    min-width: 175px;
+    height: 36px;
+    padding: 0 12px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #EBEBEB;
+    outline: none;
+}
+
+.input__data::placeholder {
+    color: #999;
+}
+
+.input__data:hover {
+    background-color: #F6F6F6;
+    cursor: pointer;
+}
+
+.input__data:focus {
+    border-color: #50B83C;
+}
+
+.input__data--error {
+    border-color: #E61D1D;
+}

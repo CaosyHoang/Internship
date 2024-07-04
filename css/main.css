@@ -1,0 +1,20 @@
+@import url(./components/button.css);
+@import url(./components/combobox.css);
+@import url(./components/input.css);
+@import url(./components/search-box.css);
+@import url(./components/table.css);
+@import url(./components/modal.css);
+
+
+:root {
+    --font-family: 'Roboto', sans-serif;
+    --font-size: 14px;
+    --color: #333;
+}
+
+* {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--color);
+    box-sizing: border-box;
+}

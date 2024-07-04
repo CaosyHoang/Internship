@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="assets/font/fontawesome-5.15.1/css/all.min.css">
+    <title>Demo HTML/CSS</title>
+</head>
+
+<body>
+    <header class="header">
+        <h2 class="header__brand">
+            <i class="fas fa-th"></i>
+            <img src="./assets/cukcuk-logo.png" class="header__logo" alt="cukcuk-logo">
+        </h2>
+        <nav class="header__nav">
+            <div class="header__nav-region">
+                <select class="header__selection">
+                    <option class="header__option" value="">Hà Nội</option>
+                    <option class="header__option" value="">Thành Phố Hồ Chí Minh</option>
+                </select>
+            </div>
+            <div class="header__user">
+                <p class="header__user-name">Cao Sỹ Minh Hoàng</p>
+                <img src="./assets/icon/avatar-default.png" class="header__user-avatar" alt="avatar">
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main__header">
+            <h2 class="main__caption">Quản lý Nhân viên</h2>
+            <button class="button button--primary">
+                <img src="./assets/icon/add.png" class="button-icon" alt="Thêm mới">
+                Thêm mới
+            </button>
+        </div>
+        <section class="main__section">
+            <article class="main__header-article">
+                <form action="" class="search-box" method="get">
+                    <input type="text" class="search-box__data" placeholder="Search...">
+                    <button type="submit" class="search-box__button">
+                        <img src="./assets/icon/search.png" class="search-box__icon">
+                    </button>
+                </form>
+                <div class="main__header-article-feature">
+                    <button class="button button--secondary">
+                        <img src="./assets/icon/export-excel-50.png" alt="Xuất Excel">
+                    </button>
+                    <button class="button button--secondary">
+                        <img src="./assets/icon/refresh.png" alt="Làm mới">
+                    </button>
+                </div>
+            </article>
+            <div class="main__data-grid">
+                <table class="table">
+                    <tr class="table__label">
+                        <th class="table__cell" width="8%">STT</th>
+                        <th class="table__cell" width="10%">Mã nhân viên</th>
+                        <th class="table__cell" width="16%">Họ và tên</th>
+                        <th class="table__cell" width="8%">Giới tính</th>
+                        <th class="table__cell" width="8%">Ngày sinh</th>
+                        <th class="table__cell" width="20%%">Địa chỉ Email</th>
+                        <th class="table__cell" width="30%">Địa chỉ</th>
+                    </tr>
+                    <tr class="table__record">
+                        <td class="table__cell">1</td>
+                        <td class="table__cell">NV-34296</td>
+                        <td class="table__cell">Hoàng Hưng Chung</td>
+                        <td class="table__cell">Nam</td>
+                        <td class="table__cell">02/08/2003</td>
+                        <td class="table__cell">hungchung@gmail.com</td>
+                        <td class="table__cell">
+                            104 Nhà K, ngõ 72 Lĩnh Nam
+                            <div class="table__option">
+                                <button class="button button--secondary button--table">
+                                    <i class="fas fa-pen button-icon"></i>
+                                </button>
+                                <button class="button button--secondary button--table">
+                                    <i class="far fa-copy button-icon"></i>
+                                </button>
+                                <button class="button button--secondary button--table">
+                                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Xóa">
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <aside class="aside">
+        <nav class="aside__nav">
+            <ul class="aside__menu">
+                <li class="aside__menu-item">
+                    <img src="./assets/icon/dashboard.png" class="aside__icon" alt="Trang chủ">
+                    Trang chủ
+                </li>
+                <li class="aside__menu-item">
+                    <img src="./assets/icon/report.png" class="aside__icon" alt="Báo cáo">
+                    Báo cáo
+                </li>
+                <li class="aside__menu-item">
+                    <img src="./assets/icon/dic-employee.png" class="aside__icon" alt="Nhân viên">
+                    Nhân viên
+                </li>
+                <li class="aside__menu-item">
+                    <img src="./assets/icon/setting.png" class="aside__icon" alt="Cài đặt">
+                    Cài đặt
+                </li>
+            </ul>
+        </nav>
+        <div class="aside__collapse">
+            <i class="fas fa-chevron-left" class="aside__icon"></i>
+            Thu gọn
+        </div>
+    </aside>
+</body>
+
+</html>

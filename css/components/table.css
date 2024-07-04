@@ -1,0 +1,35 @@
+.table {
+    position: relative;
+    border: 1px solid #E6E6E6;
+    border-collapse: collapse;
+    overflow-y: auto;
+}
+
+.table__label {
+    position: sticky;
+    background: #EEEEEE;
+    cursor: default;
+}
+
+.table__record {
+    cursor: default;
+}
+
+.table__record:hover {
+    background: #F6F6F6;
+}
+
+.table__cell {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    border: 1px solid #E6E6E6;
+    text-align: left;
+}
+
+.table__option {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    float: right;
+}
