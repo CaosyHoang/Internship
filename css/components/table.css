@@ -1,14 +1,17 @@
 .table {
     position: relative;
-    border: 1px solid #E6E6E6;
     border-collapse: collapse;
-    overflow-y: auto;
+    width: 100%;
+    background: #fff;
+    table-layout: fixed;
 }
 
 .table__label {
     position: sticky;
+    top: 0;
     background: #EEEEEE;
     cursor: default;
+    z-index: 1;
 }
 
 .table__record {
@@ -20,16 +23,27 @@
 }
 
 .table__cell {
+    position: relative;
     height: 36px;
     line-height: 36px;
-    padding: 0 16px;
+    padding: 0 8px;
     border: 1px solid #E6E6E6;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .table__option {
+    position: absolute;
+    top: 0;
+    right: 8px;
     height: 36px;
     display: inline-flex;
     align-items: center;
     float: right;
+}
+
+.table__option>.button--symbol:hover {
+    background-color: #fff;
 }

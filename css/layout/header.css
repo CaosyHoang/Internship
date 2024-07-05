@@ -1,0 +1,44 @@
+.header{
+    display: flex;
+    height: 56px;
+    background: #fff;
+}
+.header__brand{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    margin: 0;
+}
+.header__brand i{
+    margin: 20px;
+    font-size: 16px;
+}
+.header__logo{
+    height: 32px;
+    margin: 12px 0;
+}
+.header__nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+.header__nav-region{
+    min-width: 140px;
+    height: 20px;
+    border: none;
+    outline: none;
+}
+.header__user{
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+}
+.header__user-name{
+    font-weight: 550;
+}
+.header__user-avatar{
+    height: 36px;
+    border-radius: calc(36px / 2);
+    margin-right: 8px;
+}

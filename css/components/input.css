@@ -1,6 +1,5 @@
 .input {
     display: inline-flex;
-    flex-wrap: wrap;
     flex-direction: column;
 }
 
@@ -9,10 +8,9 @@
 }
 
 .input__data {
-    min-width: 175px;
     height: 36px;
     padding: 0 12px;
-    margin: 8px 0;
+    margin-top: 8px;
     border-radius: 4px;
     border: 1px solid #EBEBEB;
     outline: none;
@@ -24,7 +22,7 @@
 
 .input__data:hover {
     background-color: #F6F6F6;
-    cursor: pointer;
+    cursor: text;
 }
 
 .input__data:focus {
@@ -33,4 +31,19 @@
 
 .input__data--error {
     border-color: #E61D1D;
+}
+.input__radio-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    margin-top: 8px;
+}
+.input__radio-option{
+    display: flex;
+    align-items: center;
+}
+.input__radio{
+    margin: 3px;
+    cursor: pointer;
 }

@@ -4,12 +4,25 @@
 @import url(./components/search-box.css);
 @import url(./components/table.css);
 @import url(./components/modal.css);
+@import url(./components/form.css);
+
+
+@import url(./layout/grid.css);
+@import url(./layout/grid-form.css);
+@import url(./layout/header.css);
+@import url(./layout/sidebar.css);
+@import url(./layout/main.css);
+
 
 
 :root {
     --font-family: 'Roboto', sans-serif;
     --font-size: 14px;
     --color: #333;
+}
+
+body {
+    margin: 0;
 }
 
 * {

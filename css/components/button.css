@@ -1,5 +1,6 @@
 .button {
-    min-width: 80px;
+    display: flex;
+    align-items: center;
     height: 36px;
     padding: 0 16px;
     border-radius: 4px;
@@ -9,17 +10,7 @@
 .button+.button {
     margin-left: 8px;
 }
-.button--table{
-    min-width: 0px;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #E6E6E6;
-    border: none;
-}
+
 .button--primary {
     background-color: #50B83C;
     border: none;
@@ -52,16 +43,23 @@
     background-color: #ebebeb;
 }
 
-.button-close {
-    width: 24px;
-    height: 24px;
+.button--symbol {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 0px;
+    padding: 0;
+    width: 24px;
+    height: 24px;
     background: none;
     border: none;
 }
 
+.button--symbol:hover {
+    background-color: #f6f6f6;
+}
+
 .button-icon {
     width: 20px;
+    margin: 4px;
 }
