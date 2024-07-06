@@ -14,20 +14,30 @@
     z-index: 1;
 }
 
+.table__label>.table__cell {
+    border-left: 1px solid #E6E6E6;
+    border-right: 1px solid #E6E6E6;
+}
+
 .table__record {
     cursor: default;
+}
+
+.table__record>.table__cell {
+    border: 1px solid #E6E6E6;
 }
 
 .table__record:hover {
     background: #F6F6F6;
 }
-
+.table__record:hover .table__option {
+    display: inline-flex;
+}
 .table__cell {
     position: relative;
-    height: 36px;
+    min-height: 36px;
     line-height: 36px;
     padding: 0 8px;
-    border: 1px solid #E6E6E6;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
@@ -39,10 +49,11 @@
     top: 0;
     right: 8px;
     height: 36px;
-    display: inline-flex;
+    display: none;
     align-items: center;
     float: right;
 }
+
 
 .table__option>.button--symbol:hover {
     background-color: #fff;
