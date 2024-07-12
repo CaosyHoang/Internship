@@ -11,15 +11,15 @@
 
 <body>
     <div class="overlay">
-        <!-- DIALOG -->
-        <div class="modal">
+        <!-- FORM -->
+        <div class="modal form" hidden>
             <div class="modal__header">
                 <h2 class="modal__header-title">Thông tin nhân viên</h2>
                 <button class="button--symbol">
-                    <img src="./assets/icon/close-48.png" class="button-icon">
+                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
                 </button>
             </div>
-            <form action="" class="form modal__body" method="get">
+            <form action="" class="modal__body" method="get">
                 <!-- MÃ NHÂN VIÊN -->
                 <div class="modal__body-data input m3">
                     <label class="input__label">Mã nhân viên</label>
@@ -140,6 +140,35 @@
                 <button class="button button--primary">Thêm mới</button>
             </div>
         </div>
+
+        <!-- DIAGLOG -->
+        <div class="modal dialog">
+            <div class="modal__header">
+                <h2 class="modal__header-title">Thông tin nhân viên</h2>
+                <button class="button--symbol">
+                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
+                </button>
+            </div>
+            <div class="modal__body">
+                <p class="modal__body-description">
+                    <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">
+                    Bạn có chắc muốn xóa nhân viên không?
+                </p>
+            </div>
+            <div class="modal__footer">
+                <!-- <button class="button button--secondary">Hủy</button> -->
+                <button class="button button--primary">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast">
+        <img src="./assets/icon/question-48.png" class="toast__symbol" alt="Question">
+        <p class="toast__description">Đây là nội dung của Toast Messenger</p>
+        <button class="button--symbol">
+            <img src="./assets/icon/close-48.png"  class="button-icon" alt="Close">
+        </button>
+    </div>
 </body>
 
 </html>

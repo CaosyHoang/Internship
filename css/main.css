@@ -5,12 +5,14 @@
 @import url(./components/table.css);
 @import url(./components/modal.css);
 @import url(./components/form.css);
+@import url(./components/dialog.css);
+@import url(./components/toast.css);
 
 
 @import url(./layout/grid.css);
 @import url(./layout/header.css);
 @import url(./layout/sidebar.css);
-@import url(./layout/main.css);
+@import url(./layout/main-content.css);
 
 
 
