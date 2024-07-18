@@ -23,6 +23,10 @@
     cursor: default;
 }
 
+.table__record>.table__cell:nth-child(5) {
+    text-align: center;
+}
+
 .table__record>.table__cell {
     border: 1px solid #E6E6E6;
 }
@@ -30,9 +34,11 @@
 .table__record:hover {
     background: #F6F6F6;
 }
+
 .table__record:hover .table__option {
     display: inline-flex;
 }
+
 .table__cell {
     position: relative;
     min-height: 36px;
@@ -53,7 +59,6 @@
     align-items: center;
     float: right;
 }
-
 
 .table__option>.button--symbol:hover {
     background-color: #fff;

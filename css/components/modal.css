@@ -4,7 +4,6 @@
     background-color: #fff;
     border-radius: 4px;
     overflow-y: auto;
-    margin: 0 24px;
 }
 
 .modal::-webkit-scrollbar {
@@ -35,6 +34,11 @@
     margin: 0 24px 24px;
 }
 
+.modal__body-list {
+    padding-left: 0;
+    list-style: none;
+}
+
 .modal__body-description {
     line-height: 24px;
     text-align: justify;
@@ -42,9 +46,9 @@
     margin: 0;
 }
 
-.modal__body-icon{
+.modal__body-icon {
     height: 30px;
-    margin-right: 8px;
+    margin-right: 4px;
     margin-bottom: -10px;
 }
 
@@ -57,8 +61,8 @@
     background: #F5F5F5;
     padding: 12px 24px;
 }
-
-.overlay {
+.overlay{
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;

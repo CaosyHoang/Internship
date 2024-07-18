@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/Internship">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="assets/font/fontawesome-5.15.1/css/all.min.css">
     <title>Demo HTML/CSS</title>
@@ -58,7 +59,7 @@
         <main class="main-content">
             <div class="main__header">
                 <h2 class="main__caption">Quản lý Nhân viên</h2>
-                <button class="button button--primary">
+                <button id="btnAdd" class="button button--primary">
                     <img src="./assets/icon/add.png" class="button-icon" alt="Thêm mới">
                     Thêm mới
                 </button>
@@ -289,50 +290,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="table__record">
-                            <td class="table__cell">1</td>
-                            <td class="table__cell">NV-34296</td>
-                            <td class="table__cell">Hoàng Hưng Chung</td>
-                            <td class="table__cell">Nam</td>
-                            <td class="table__cell">02/08/2003</td>
-                            <td class="table__cell">hungchung@gmail.com</td>
-                            <td class="table__cell">
-                                104 Nhà K, ngõ 72 Lĩnh Nam
-                                <div class="table__option">
-                                    <button class="button button--symbol">
-                                        <i class="fas fa-pen button-icon"></i>
-                                    </button>
-                                    <button class="button button--symbol">
-                                        <i class="far fa-copy button-icon"></i>
-                                    </button>
-                                    <button class="button button--symbol">
-                                        <img src="./assets/icon/close-48.png" class="button-icon" alt="Xóa">
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="table__record">
-                            <td class="table__cell">1</td>
-                            <td class="table__cell">NV-34296</td>
-                            <td class="table__cell">Hoàng Hưng Chung</td>
-                            <td class="table__cell">Nam</td>
-                            <td class="table__cell">02/08/2003</td>
-                            <td class="table__cell">hungchung@gmail.com</td>
-                            <td class="table__cell">
-                                104 Nhà K, ngõ 72 Lĩnh Nam
-                                <div class="table__option">
-                                    <button class="button button--symbol">
-                                        <i class="fas fa-pen button-icon"></i>
-                                    </button>
-                                    <button class="button button--symbol">
-                                        <i class="far fa-copy button-icon"></i>
-                                    </button>
-                                    <button class="button button--symbol">
-                                        <img src="./assets/icon/close-48.png" class="button-icon" alt="Xóa">
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
                     </table>
                 </div>
                 <div class="main__page">
@@ -359,6 +316,181 @@
             </section>
         </main>
     </div>
+
+    <div class="overlay">
+        <!-- FORM -->
+        <div id="formEmployeeDetail" class="modal form">
+            <div class="modal__header">
+                <h2 class="modal__header-title">Thông tin nhân viên</h2>
+                <button class="button--symbol modal__btn--close">
+                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
+                </button>
+            </div>
+            <form action="" class="modal__body" method="get">
+                <!-- MÃ NHÂN VIÊN -->
+                <div class="modal__body-data input m3">
+                    <label class="input__label">Mã nhân viên</label>
+                    <input id="txtEmployeeCode" type="text" class="input__data" required>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- HỌ VÀ TÊN -->
+                <div class="modal__body-data input m3">
+                    <label class="input__label">Họ và tên</label>
+                    <input id="txtFullname" type="text" class="input__data" required>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- NGÀY SINH -->
+                <div class="modal__body-data input m3">
+                    <label class="input__label">Ngày sinh</label>
+                    <input id="dateBirthday" type="date" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- GIỚI TÍNH -->
+                <div class="modal__body-data input m3">
+                    <label class="input__label">Giới tính</label>
+                    <div id="radioGender" class="input__radio-box">
+                        <div class="input__radio-option">
+                            <input type="radio" class="input__radio" name="gender" value="">
+                            <label class="input__radio-label">Nam</label>
+                        </div>
+                        <div class="input__radio-option">
+                            <input type="radio" class="input__radio" name="gender" value="">
+                            <label class="input__radio-label">Nữ</label>
+                        </div>
+                        <div class="input__radio-option">
+                            <input type="radio" class="input__radio" name="gender" value="">
+                            <label class="input__radio-label">Khác</label>
+                        </div>
+                    </div>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- VỊ TRÍ -->
+                <div class="modal__body-data combobox m6">
+                    <label class="combobox__label">Vị trí</label>
+                    <div class="combobox__control">
+                        <input id="cbPosition" type="text" class="combobox__data">
+                        <button type="button" class="combobox__button">
+                            <i class="fas fa-angle-down"></i>
+                        </button>
+                        <ul class="combobox__dropdown" hidden>
+                            <li class="combobox__item"></li>
+                            <li class="combobox__item"></li>
+                            <li class="combobox__item"></li>
+                        </ul>
+                    </div>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- SỐ CHỨNG MINH THƯ NHÂN DÂN -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">Số CMTND</label>
+                    <input id="txtCMTND" type="text" class="input__data" required>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- NGÀY CẤP -->
+                <div class="modal__body-data input m2">
+                    <label class="input__label">Ngày cấp</label>
+                    <input id="dateReceive" type="date" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- PHÒNG BAN -->
+                <div class="modal__body-data combobox m6">
+                    <label class="combobox__label">Phòng ban</label>
+                    <div class="combobox__control">
+                        <input id="cbDepartment" type="text" class="combobox__data">
+                        <button type="button" class="combobox__button">
+                            <i class="fas fa-angle-down"></i>
+                        </button>
+                        <ul class="combobox__dropdown" hidden>
+                            <li class="combobox__item"></li>
+                            <li class="combobox__item"></li>
+                            <li class="combobox__item"></li>
+                        </ul>
+                    </div>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- NƠI CẤP -->
+                <div class="modal__body-data input m6">
+                    <label class="input__label">Nơi cấp</label>
+                    <input id="txtReceivePlace" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- ĐỊA CHỈ -->
+                <div class="modal__body-data input m12">
+                    <label class="input__label">Địa chỉ</label>
+                    <input id="txtAddress" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- ĐIỆN THOẠI DI ĐỘNG -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">ĐT Di động</label>
+                    <input id="txtPhoneNumber" type="text" class="input__data" required>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- ĐIỆN THOẠI CỐ ĐỊNH -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">ĐT Cố định</label>
+                    <input id="txtPhoneDesktop" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- EMAIL -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">Email</label>
+                    <input id="txtEmail" type="text" class="input__data" required>
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- TÀI KHOẢN NGÂN HÀNG -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">Tài khoản ngân hàng</label>
+                    <input id="txtBankAccount" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- TÊN NGÂN HÀNG -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">Tên ngân hàng</label>
+                    <input id="txtBankName" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+                <!-- CHI NHÁNH -->
+                <div class="modal__body-data input m4">
+                    <label class="input__label">Chi nhánh</label>
+                    <input id="txtBranch" type="text" class="input__data">
+                    <div class="input__message-error"></div>
+                </div>
+            </form>
+
+            <div class="modal__footer">
+                <button class="button button--secondary">Hủy</button>
+                <button id="btnSave" class="button button--primary">Thêm mới</button>
+            </div>
+        </div>
     </div>
+
+    <div class="overlay">
+        <!-- DIAGLOG -->
+        <div class="modal dialog dialog--notice">
+            <div class="modal__header">
+                <h2 class="modal__header-title"></h2>
+                <button class="button--symbol modal__btn--close">
+                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
+                </button>
+            </div>
+            <div class="modal__body"></div>
+            <div class="modal__footer">
+                <button class="button dialog__button--confirm button--primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast">
+        <img src="./assets/icon/question-48.png" class="toast__symbol" alt="Question">
+        <p class="toast__description">Đây là nội dung của Toast Messenger</p>
+        <button class="button--symbol">
+            <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
+        </button>
+    </div>
+
+    <script src="./js/employee/employee.js"></script>
 </body>
+
 </html>
