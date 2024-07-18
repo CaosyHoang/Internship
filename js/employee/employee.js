@@ -22,7 +22,7 @@ class CustomerPage {
         .addEventListener("click", this.btnAddOnClick);
 
       // Ẩn form chi tiết, thông báo toast và dialog:
-      let buttons = document.querySelectorAll(".modal .modal__btn--close");
+      const buttons = document.querySelectorAll(".modal .modal__btn--close");
       for (let button of buttons) {
         button.addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
@@ -34,7 +34,7 @@ class CustomerPage {
         .querySelector(".dialog--notice .dialog__button--confirm")
         .addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
-            "visible";
+            "hidden";
           me.inputInvalid[0].focus();
         });
       // Lưu dữ liệu:
@@ -105,7 +105,7 @@ class CustomerPage {
     try {
       // Hiển thị form thêm mới:
       // 1. Lấy ra element của form thêm mới:
-      let form = document.querySelector("#formEmployeeDetail");
+      const form = document.querySelector("#formEmployeeDetail");
 
       // 2. Set hiển thị form:
       form.parentElement.style.visibility = "visible";
@@ -126,20 +126,21 @@ class CustomerPage {
 
       // Hiển thị thông báo nếu dữ liệu không hợp lệ:
       if (error.Errors.length > 0) {
-        let dialogNotice = document.querySelector(".dialog.dialog--notice");
+        const dialogNotice = document.querySelector(".dialog.dialog--notice");
         // Hiển thị thông báo lên:
         dialogNotice.parentElement.style.visibility = "visible";
         // Thay đổi tiêu đề thông báo:
         dialogNotice.querySelector(".modal__header-title").innerHTML =
           "Dữ liệu không hợp lệ";
         // Duyệt từng nội dung thông báo:
-        let li = "";
-        for (let Msg of error.Errors) {
-          li += `<li class="modal__body-description">
-                    <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">  
-                    ${Msg}
-                </li>`;
-        }
+
+        let li = error.Errors.reduce((acc, cur) => {
+          return `${acc}
+            <li class="modal__body-description">
+              <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">  
+              ${cur}
+            </li>`;
+        }, "");
         // Thay đổi chi tiêt thông báo:
         dialogNotice.querySelector(
           ".modal__body"
@@ -188,14 +189,14 @@ class CustomerPage {
         Errors: [],
       };
       // Lấy ra tất cả các nút bắt buộc nhập:
-      let inputs = document.querySelectorAll(
+      const inputs = document.querySelectorAll(
         "#formEmployeeDetail input[required]"
       );
       for (let input of inputs) {
         let value = input.value;
         // Kiểm tra tính hợp lệ của field:
         if (value === "" || value === null || value === undefined) {
-          let label = input.previousElementSibling.textContent;
+          const label = input.previousElementSibling.textContent;
           // Đổi màu style input không hợp lệ:
           input.classList.add("input--invalid");
           // Tạo message thông báo lỗi:
