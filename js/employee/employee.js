@@ -6,6 +6,7 @@ class CustomerPage {
   pageTitle = "Quản lý khách hàng";
   inputInvalid = [];
   constructor() {
+    this.loadData();
     this.initEvents();
   }
 
@@ -23,7 +24,7 @@ class CustomerPage {
 
       // Ẩn form chi tiết, thông báo toast và dialog:
       const buttons = document.querySelectorAll(".modal .modal__btn--close");
-      for (let button of buttons) {
+      for (const button of buttons) {
         button.addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
             "hidden";
@@ -80,20 +81,82 @@ class CustomerPage {
       console.error(error);
     }
   }
+
   /**
-   * Load dữ liệu cần thiết lúc bắt đầu trang web
+   * Load danh sách thông tin nhân viên
    * Author: Minh Hoàng (14/07/2024)
    */
-  loadData() {
+  async loadData() {
     try {
       // Gọi api lấy dữ liệu:
-      fetch("")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
+      let employees = await this.fetchData(
+        "https://cukcuk.manhnv.net/api/v1/Customers"
+      );
+      // Chèn dữ liệu vào bảng:
+      document.querySelector("#dataTable tbody").innerHTML = employees.reduce(
+        (acc, cur, ind) => {
+          return `${acc}
+            <tr class="table__record">
+                <td class="table__cell">${ind + 1}</td>
+                <td class="table__cell">${cur.CustomerCode}</td>
+                <td class="table__cell">${cur.FullName}</td>
+                <td class="table__cell">${cur.Gender === 1 ? "Nam" : "Nữ"}</td>
+                <td class="table__cell">${cur.DateOfBirth}</td>
+                <td class="table__cell">${cur.Email}</td>
+                <td class="table__cell">
+                    ${cur.Address}
+                    <div class="table__option">
+                        <button class="button button--symbol">
+                            <i class="fas fa-pen button-icon"></i>
+                        </button>
+                        <button class="button button--symbol">
+                            <i class="far fa-copy button-icon"></i>
+                        </button>
+                        <button class="button button--symbol">
+                            <img src="./assets/icon/close-48.png" class="button-icon" alt="Xóa">
+                        </button>
+                    </div>
+                </td>
+            </tr>`;
+        },
+        ""
+      );
+      document.querySelector(
+        "#countEmployee"
+      ).textContent = `Tổng số: ${employees.length}`;
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  /**
+   * Hàm ẩn hiện loading
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  spinner(isShow) {
+    const spin = document.querySelector("#spinner");
+    if (isShow === true) {
+      spin.style.visibility = "visible";
+    } else {
+      spin.style.visibility = "hidden";
+    }
+  }
+
+  /**
+   * Hàm thực hiện fetch dữ liệu
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async fetchData(url) {
+    // Hiện loading trước khi gọi api:
+    this.spinner(true);
+    try {
+      let response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // Ẩn loading khi kết thúc:
+      this.spinner(false);
     }
   }
 
@@ -104,11 +167,12 @@ class CustomerPage {
   btnAddOnClick() {
     try {
       // Hiển thị form thêm mới:
-      // 1. Lấy ra element của form thêm mới:
+      // Lấy ra element của form thêm mới:
       const form = document.querySelector("#formEmployeeDetail");
-
-      // 2. Set hiển thị form:
+      // Set hiển thị form:
       form.parentElement.style.visibility = "visible";
+      // focus vào input đầu tiên:
+      form.querySelector("input.input__data").focus();
       //...
     } catch (error) {
       console.error(error);
@@ -178,6 +242,7 @@ class CustomerPage {
       console.error(error);
     }
   }
+
   /**
    * Hàm kiểm tra hợp lệ cho các field bắt buộc
    * Author: Minh Hoàng (14/07/2024)
@@ -192,7 +257,7 @@ class CustomerPage {
       const inputs = document.querySelectorAll(
         "#formEmployeeDetail input[required]"
       );
-      for (let input of inputs) {
+      for (const input of inputs) {
         let value = input.value;
         // Kiểm tra tính hợp lệ của field:
         if (value === "" || value === null || value === undefined) {
