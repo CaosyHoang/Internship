@@ -2,8 +2,11 @@
     display: grid;
     grid-template-rows: 56px calc(100vh - 56px);
     grid-template-columns: 200px calc(100% - 200px);
+    transition: all 0.3s ease-out;
 }
-
+.container--collapse {
+    grid-template-columns: 72px calc(100% - 72px);
+}
 .header {
     grid-column-start: 1;
     grid-column-end: 3;

@@ -1,17 +1,20 @@
-.aside{
+.aside {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: #041434;
 }
-.aside__nav{
+
+.aside__nav {
     margin: 0 12px;
 }
-.aside__menu{
+
+.aside__menu {
     list-style: none;
     padding: 0;
 }
-.aside__menu-item{
+
+.aside__menu-item {
     height: 44px;
     display: flex;
     align-items: center;
@@ -20,24 +23,62 @@
     color: #fff;
     cursor: pointer;
 }
-.aside__menu-item:hover{
+
+.aside__menu-item:hover {
     background-color: #A7C4FF;
 }
-.aside__icon{
+
+.aside__text {
+    color: #fff;
+    margin: 0;
+}
+
+.aside__icon {
     width: 24px;
     height: 24px;
     margin: 0 12px;
     filter: brightness(0) invert(1);
 }
-.aside__collapse{
+
+.aside__icon--collapse {
+    display: none;
+}
+
+.aside__icon--extend {
+    display: none;
+}
+
+.aside__collapse {
     display: flex;
     align-items: center;
     height: 44px;
-    padding-right: 12px;
+    padding: 0 12px;
     border-top: 2px solid #2a2f3a;
     color: #fff;
     cursor: pointer;
 }
-.aside__collapse:hover{
+
+.aside[collapse="off"] .aside__collapse:hover {
     opacity: 0.8;
+}
+
+.aside[collapse="off"] .aside__icon--collapse {
+    display: inline;
+}
+
+.aside[collapse="off"] .aside__text {
+    opacity: 1;
+    display: inline;
+}
+
+.aside[collapse="on"] .aside__collapse:hover {
+    background-color: #A7C4FF;
+}
+
+.aside[collapse="on"] .aside__icon--extend {
+    display: inline;
+}
+
+.aside[collapse="on"] .aside__text {
+    display: none;
 }

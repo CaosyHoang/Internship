@@ -1,10 +1,11 @@
 window.onload = function () {
-  new CustomerPage();
+  new EmployeePage();
 };
 
-class CustomerPage {
+class EmployeePage {
   pageTitle = "Quản lý khách hàng";
   inputInvalid = [];
+  employees = [];
   constructor() {
     this.loadData();
     this.initEvents();
@@ -15,29 +16,68 @@ class CustomerPage {
    * Author: Minh Hoàng (14/07/2024)
    */
   initEvents() {
-    var me = this;
+    const self = this;
     try {
       // Click button "Thêm mới" hiện thị form thêm mới:
       document
         .querySelector("#btnAdd")
-        .addEventListener("click", this.btnAddOnClick);
+        .addEventListener("click", this.btnAddOnClick.bind(this));
 
       // Ẩn form chi tiết, thông báo toast và dialog:
-      const buttons = document.querySelectorAll(".modal .modal__btn--close");
-      for (const button of buttons) {
+      const closeButtons = document.querySelectorAll(
+        ".modal .modal__btn--close"
+      );
+      for (const button of closeButtons) {
         button.addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
             "hidden";
         });
       }
+
       // Click button "Đồng ý" ẩn thông báo:
       document
         .querySelector(".dialog--notice .dialog__button--confirm")
         .addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
             "hidden";
-          me.inputInvalid[0].focus();
+          self.inputInvalid[0].focus();
         });
+
+      // Click thu gọn/mở rộng sidebar
+      document
+        .querySelector("#aside .aside__collapse")
+        .addEventListener("click", function () {
+          const aside = this.parentElement;
+          const container = document.querySelector(".container");
+          // Lấy ra giá trị attribute collapse là on/off:
+          let collapse = aside.getAttribute("collapse");
+          if (collapse === "off") {
+            // Thu nhỏ aside:
+            aside.setAttribute("collapse", "on");
+            container.classList.add("container--collapse");
+          } else {
+            // Mở rộng aside:
+            aside.setAttribute("collapse", "off");
+            container.classList.remove("container--collapse");
+          }
+        });
+
+      // Click button để hiển thị dropdown trên combobox:
+      const dropButtons = document.querySelectorAll(
+        ".combobox .combobox__button"
+      );
+      for (const button of dropButtons) {
+        button.addEventListener("click", function () {
+          // Ẩn hoặc hiện dropdown khi click và button:
+          self.btnDropdown(this);
+          // Ẩn dropdown khi click bên ngoài button:
+          document.addEventListener(
+            "click",
+            self.handleOutsideCombobox.bind(this)
+          );
+        });
+      }
+
       // Lưu dữ liệu:
       document
         .querySelector("#btnSave")
@@ -89,12 +129,12 @@ class CustomerPage {
   async loadData() {
     try {
       // Gọi api lấy dữ liệu:
-      let employees = await this.fetchData(
+      this.employees = await this.fetchData(
         "https://cukcuk.manhnv.net/api/v1/Customers"
       );
       // Chèn dữ liệu vào bảng:
-      document.querySelector("#dataTable tbody").innerHTML = employees.reduce(
-        (acc, cur, ind) => {
+      document.querySelector("#dataTable tbody").innerHTML =
+        this.employees.reduce((acc, cur, ind) => {
           return `${acc}
             <tr class="table__record">
                 <td class="table__cell">${ind + 1}</td>
@@ -118,45 +158,12 @@ class CustomerPage {
                     </div>
                 </td>
             </tr>`;
-        },
-        ""
-      );
+        }, "");
       document.querySelector(
         "#countEmployee"
-      ).textContent = `Tổng số: ${employees.length}`;
+      ).textContent = `Tổng số: ${this.employees.length}`;
     } catch (error) {
       console.error(error);
-    }
-  }
-
-  /**
-   * Hàm ẩn hiện loading
-   * Author: Minh Hoàng (14/07/2024)
-   */
-  spinner(isShow) {
-    const spin = document.querySelector("#spinner");
-    if (isShow === true) {
-      spin.style.visibility = "visible";
-    } else {
-      spin.style.visibility = "hidden";
-    }
-  }
-
-  /**
-   * Hàm thực hiện fetch dữ liệu
-   * Author: Minh Hoàng (14/07/2024)
-   */
-  async fetchData(url) {
-    // Hiện loading trước khi gọi api:
-    this.spinner(true);
-    try {
-      let response = await fetch(url);
-      return await response.json();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      // Ẩn loading khi kết thúc:
-      this.spinner(false);
     }
   }
 
@@ -166,11 +173,12 @@ class CustomerPage {
    */
   btnAddOnClick() {
     try {
-      // Hiển thị form thêm mới:
       // Lấy ra element của form thêm mới:
       const form = document.querySelector("#formEmployeeDetail");
       // Set hiển thị form:
       form.parentElement.style.visibility = "visible";
+      // Reset form thêm mới:
+      this.resetForm();
       // focus vào input đầu tiên:
       form.querySelector("input.input__data").focus();
       //...
@@ -197,7 +205,6 @@ class CustomerPage {
         dialogNotice.querySelector(".modal__header-title").innerHTML =
           "Dữ liệu không hợp lệ";
         // Duyệt từng nội dung thông báo:
-
         let li = error.Errors.reduce((acc, cur) => {
           return `${acc}
             <li class="modal__body-description">
@@ -221,6 +228,55 @@ class CustomerPage {
   }
 
   /**
+   * Click button "drop" hiển thị drowdown và gọi api lấy dữ liệu tương ứng
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnDropdown(element) {
+    try {
+      const combobox = element.parentElement.parentElement;
+      const dropdown = element.nextElementSibling;
+      const input = element.previousElementSibling;
+      let drop = combobox.getAttribute("drop");
+      let url = combobox.getAttribute("src");
+
+      //Đóng mở dropdown:
+      if (drop === "off") {
+        combobox.setAttribute("drop", "on");
+        if (url !== "") {
+          // Lấy dữ liệu lựa chọn cho combobox tương ứng:
+          let items = await this.fetchDataCombobox(url);
+          dropdown.innerHTML = items.reduce((acc, cur) => {
+            return `${acc}<li class="combobox__item">${cur.DepartmentName}</li>`;
+          }, "");
+          // Chọn option trên dropdown:
+          let nodeItems = dropdown.querySelectorAll(".combobox__item");
+          for (const node of nodeItems) {
+            node.addEventListener("click", () => {
+              // Chèn giá trị vào input:
+              input.value = node.textContent;
+            });
+          }
+        }
+      } else {
+        combobox.setAttribute("drop", "off");
+      }
+      //...
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /**
+   * Ẩn dropdown khi click ra bên ngoài combobox:
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  handleOutsideCombobox(event) {
+    if (!this.contains(event.target)) {
+      this.parentElement.parentElement.setAttribute("drop", "off");
+    }
+  }
+
+  /**
    * Hàm kiểm tra hợp lệ dữ liệu form khi click button "Thêm mới" trên form
    * Author: Minh Hoàng (14/07/2024)
    */
@@ -232,12 +288,56 @@ class CustomerPage {
       };
       // Kiểm tra hợp lệ các field bắt buộc:
       let validateRequire = this.checkRequireInput();
-      // Lưu thông tin lỗi:
+      // Lưu lỗi require:
       result.InputInvalid.push(...validateRequire.InputInvalid);
       result.Errors.push(...validateRequire.Errors);
+      // Kiểm tra format email
+      const inputEmail = document.querySelector(
+        "#formEmployeeDetail #txtEmail"
+      );
+      let email = inputEmail.value;
+      if (email !== "") {
+        if (!this.validateEmail(email)) {
+          result.InputInvalid.push(inputEmail);
+          result.Errors.push("Email không hợp lệ.");
+          inputEmail.nextElementSibling.textContent = "Email không hợp lệ.";
+        }
+      }
       //...
 
       return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /**
+   * Reset form điền về mặc định
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  resetForm() {
+    const inputs = document.querySelectorAll(
+      '#formEmployeeDetail input:not([type="radio"])'
+    );
+
+    // Set trống cho các trường text:
+    for (const input of inputs) {
+      input.value = "";
+    }
+    // Set radio mặc định:
+    document.querySelector(
+      '#formEmployeeDetail input[type="radio"]'
+    ).checked = true;
+  }
+
+  /**
+   * Kiểm tra email hợp lệ
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  validateEmail(email) {
+    try {
+      let regex = /^[\w]+@gmail\.com$/;
+      return regex.test(email);
     } catch (error) {
       console.error(error);
     }
@@ -258,7 +358,7 @@ class CustomerPage {
         "#formEmployeeDetail input[required]"
       );
       for (const input of inputs) {
-        let value = input.value;
+        let value = input.value.trim();
         // Kiểm tra tính hợp lệ của field:
         if (value === "" || value === null || value === undefined) {
           const label = input.previousElementSibling.textContent;
@@ -279,6 +379,54 @@ class CustomerPage {
         }
       }
       return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /**
+   * Hàm ẩn hiện loading
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  spinner(isShow) {
+    try {
+      const spin = document.querySelector("#spinner");
+      if (isShow === true) {
+        spin.style.visibility = "visible";
+      } else {
+        spin.style.visibility = "hidden";
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /**
+   * Hàm thực hiện fetch dữ liệu
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async fetchData(url) {
+    // Hiện loading trước khi gọi api:
+    this.spinner(true);
+    try {
+      let response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // Ẩn loading khi kết thúc:
+      this.spinner(false);
+    }
+  }
+
+  /**
+   * Hàm thực hiện fetch dữ liệu cho combobox
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async fetchDataCombobox(url) {
+    try {
+      let response = await fetch(url);
+      return await response.json();
     } catch (error) {
       console.error(error);
     }
