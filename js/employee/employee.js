@@ -319,10 +319,15 @@ class EmployeePage {
     const inputs = document.querySelectorAll(
       '#formEmployeeDetail input:not([type="radio"])'
     );
-
     // Set trống cho các trường text:
     for (const input of inputs) {
       input.value = "";
+      if (input.hasAttribute("required")) {
+        // Xóa style input không hợp lệ nếu có:
+        input.classList.remove("input--invalid");
+        // Xóa thông tin lỗi dưới input không hợp lệ nếu có:
+        input.nextElementSibling.textContent = "";
+      }
     }
     // Set radio mặc định:
     document.querySelector(
