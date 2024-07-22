@@ -29,8 +29,9 @@
 }
 
 .aside__text {
-    color: #fff;
     margin: 0;
+    color: #fff;
+    white-space: nowrap;
 }
 
 .aside__icon {
@@ -58,25 +59,20 @@
     cursor: pointer;
 }
 
-.aside[collapse="off"] .aside__collapse:hover {
+.aside__collapse:hover {
     opacity: 0.8;
 }
 
 .aside[collapse="off"] .aside__icon--collapse {
-    display: inline;
+    display: block;
 }
 
 .aside[collapse="off"] .aside__text {
-    opacity: 1;
-    display: inline;
-}
-
-.aside[collapse="on"] .aside__collapse:hover {
-    background-color: #A7C4FF;
+    display: block;
 }
 
 .aside[collapse="on"] .aside__icon--extend {
-    display: inline;
+    display: block;
 }
 
 .aside[collapse="on"] .aside__text {

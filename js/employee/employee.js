@@ -141,7 +141,7 @@ class EmployeePage {
                 <td class="table__cell">${cur.CustomerCode}</td>
                 <td class="table__cell">${cur.FullName}</td>
                 <td class="table__cell">${cur.Gender === 1 ? "Nam" : "Nữ"}</td>
-                <td class="table__cell">${cur.DateOfBirth}</td>
+                <td class="table__cell">${this.formatDate(cur.DateOfBirth)}</td>
                 <td class="table__cell">${cur.Email}</td>
                 <td class="table__cell">
                     ${cur.Address}
@@ -388,7 +388,17 @@ class EmployeePage {
       console.error(error);
     }
   }
-
+  /**
+   * Dịnh dạng kiểu Date => (dd/MM/yyyy)
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  formatDate(dateString) {
+    let date = new Date(dateString);
+    let day = date.getDay().toString().padStart(2, "0");
+    let month = (date.getMonth() + 1).toString().padStart(2, "0");
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
   /**
    * Hàm ẩn hiện loading
    * Author: Minh Hoàng (14/07/2024)
