@@ -63,18 +63,19 @@ class EmployeePage {
         });
 
       // Click button để hiển thị dropdown trên combobox:
-      const dropButtons = document.querySelectorAll(
+      const drpButtons = document.querySelectorAll(
         ".combobox .combobox__button"
       );
-      for (const button of dropButtons) {
+      for (const button of drpButtons) {
         button.addEventListener("click", function () {
-          // Ẩn hoặc hiện dropdown khi click và button:
+          // Ẩn hoặc hiện dropdown và lấy dữ liệu danh sách:
           self.btnDropdown(this);
-          // Ẩn dropdown khi click bên ngoài button:
-          document.addEventListener(
-            "click",
-            self.handleOutsideCombobox.bind(this)
-          );
+        });
+        // Ẩn dropdown khi click bên ngoài combobox:
+        document.addEventListener("click", (event) => {
+          if (!button.contains(event.target)) {
+            button.parentElement.parentElement.setAttribute("drop", "off");
+          }
         });
       }
 
@@ -228,7 +229,7 @@ class EmployeePage {
   }
 
   /**
-   * Click button "drop" hiển thị drowdown và gọi api lấy dữ liệu tương ứng
+   * Click hiển thị drowdown và gọi api lấy dữ liệu danh sách
    * Author: Minh Hoàng (14/07/2024)
    */
   async btnDropdown(element) {
@@ -248,14 +249,8 @@ class EmployeePage {
           dropdown.innerHTML = items.reduce((acc, cur) => {
             return `${acc}<li class="combobox__item">${cur.DepartmentName}</li>`;
           }, "");
-          // Chọn option trên dropdown:
-          let nodeItems = dropdown.querySelectorAll(".combobox__item");
-          for (const node of nodeItems) {
-            node.addEventListener("click", () => {
-              // Chèn giá trị vào input:
-              input.value = node.textContent;
-            });
-          }
+          // Chọn combobox:
+          this.handleSelectCombobox(input, dropdown);
         }
       } else {
         combobox.setAttribute("drop", "off");
@@ -265,14 +260,25 @@ class EmployeePage {
       console.error(error);
     }
   }
-
   /**
-   * Ẩn dropdown khi click ra bên ngoài combobox:
+   * Xử lý sự kiện chọn combobox
    * Author: Minh Hoàng (14/07/2024)
    */
-  handleOutsideCombobox(event) {
-    if (!this.contains(event.target)) {
-      this.parentElement.parentElement.setAttribute("drop", "off");
+  handleSelectCombobox(input, dropdown) {
+    // Chọn option trên dropdown:
+    let nodeItems = dropdown.querySelectorAll(".combobox__item");
+    for (const node of nodeItems) {
+      node.addEventListener("click", () => {
+        // Chèn giá trị vào input:
+        input.value = node.textContent;
+        // Đánh dấu giá trị đã chọn trên input:
+        for(const option of nodeItems){
+          // option.classList.remove("combobox__item--selected");
+          if(option.textContent === input.value){
+            option.classList.add("combobox__item--selected");
+          }
+        }
+      });
     }
   }
 

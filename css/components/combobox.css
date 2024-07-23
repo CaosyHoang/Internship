@@ -88,10 +88,14 @@
     background-color: rgba(80, 184, 60, 0.1);
 }
 
-.combobox[drop="off"] .combobox__dropdown{
+.combobox__item--selected {
+    background-color: rgba(80, 184, 60, 0.1);
+}
+
+.combobox[drop="off"] .combobox__dropdown {
     display: none;
 }
 
-.combobox[drop="on"] .combobox__dropdown{
+.combobox[drop="on"] .combobox__dropdown {
     display: block;
 }
