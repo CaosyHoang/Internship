@@ -1,0 +1,37 @@
+﻿using Contract.Interfaces;
+using Core.Interfaces;
+using Core.Services;
+using Infrastructure;
+using Infrastructure.Repositories;
+using LoggerService;
+using Microsoft.EntityFrameworkCore;
+
+namespace Api.Extensions
+{
+    public static class ServiceExtensions
+    {
+        public static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
+        }
+        public static void ConfigureLoggerService(this IServiceCollection services) =>
+            services.AddSingleton<ILoggerManager, LoggerManager>();
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        public static void ConfigureServiceManager(this IServiceCollection services) =>
+            services.AddScoped<IServiceManager, ServiceManager>();
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
+            services.AddDbContext<HAUI_2021606204_CaoSyMinhHoangContext>(opts =>
+            {
+                string connectionString = configuration.GetConnectionString("mySqlConnection");
+                opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            });
+    }
+}
