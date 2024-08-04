@@ -4,7 +4,7 @@ using Core.Interfaces;
 
 namespace Core.Services
 {
-    public sealed class PositionService : IPositionService
+    internal sealed class PositionService : IPositionService
     {
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _logger;

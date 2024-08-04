@@ -1,10 +1,13 @@
 ﻿using Contract.Interfaces;
+using Contracts;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure;
+using Infrastructure.Data;
 using Infrastructure.Repositories;
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Api.Extensions
 {
@@ -19,7 +22,6 @@ namespace Api.Extensions
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
-
         }
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddSingleton<ILoggerManager, LoggerManager>();
@@ -27,11 +29,16 @@ namespace Api.Extensions
             services.AddScoped<IRepositoryManager, RepositoryManager>();
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager, ServiceManager>();
-        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
-            services.AddDbContext<HAUI_2021606204_CaoSyMinhHoangContext>(opts =>
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<RepositoryContext>(opts =>
             {
                 string connectionString = configuration.GetConnectionString("mySqlConnection");
                 opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
+
+            services.AddScoped<IDapperContext, MariaDbContext>();
+        }
+
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(HAUI_2021606204_CaoSyMinhHoangContext))]
+    [DbContext(typeof(RepositoryContext))]
     [Migration("20240731060917_initial")]
     partial class initial
     {

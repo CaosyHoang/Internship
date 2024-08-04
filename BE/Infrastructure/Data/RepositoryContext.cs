@@ -2,13 +2,13 @@
 
 namespace Infrastructure
 {
-    public partial class HAUI_2021606204_CaoSyMinhHoangContext : DbContext
+    public partial class RepositoryContext : DbContext
     {
-        public HAUI_2021606204_CaoSyMinhHoangContext()
+        public RepositoryContext()
         {
         }
 
-        public HAUI_2021606204_CaoSyMinhHoangContext(DbContextOptions<HAUI_2021606204_CaoSyMinhHoangContext> options)
+        public RepositoryContext(DbContextOptions<RepositoryContext> options)
             : base(options)
         {
         }

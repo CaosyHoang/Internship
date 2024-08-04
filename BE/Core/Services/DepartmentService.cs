@@ -4,7 +4,7 @@ using Core.Interfaces;
 
 namespace Core.Services
 {
-    public sealed class DepartmentService : IDepartmentService
+    internal sealed class DepartmentService : IDepartmentService
     {
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _logger;

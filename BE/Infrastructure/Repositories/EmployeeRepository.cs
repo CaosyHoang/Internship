@@ -2,9 +2,9 @@
 
 namespace Infrastructure.Repositories
 {
-    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
+    internal sealed class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(HAUI_2021606204_CaoSyMinhHoangContext context)
+        public EmployeeRepository(RepositoryContext context)
             : base(context)
         {
 

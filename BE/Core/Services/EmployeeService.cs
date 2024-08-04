@@ -4,7 +4,7 @@ using Core.Interfaces;
 
 namespace Core.Services
 {
-    public sealed class EmployeeService : IEmployeeService
+    internal sealed class EmployeeService : IEmployeeService
     {
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _logger;

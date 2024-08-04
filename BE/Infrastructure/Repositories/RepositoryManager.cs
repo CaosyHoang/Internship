@@ -1,15 +1,17 @@
 ﻿using Contract.Interfaces;
+using MySqlConnector;
+using System.Data;
 
 namespace Infrastructure.Repositories
 {
-    public class RepositoryManager : IRepositoryManager
+    public sealed class RepositoryManager : IRepositoryManager
     {
-        private readonly HAUI_2021606204_CaoSyMinhHoangContext _context;
+        private readonly RepositoryContext _context;
         private readonly Lazy<IDepartmentRepository> _departmentRepository;
         private readonly Lazy<IEmployeeRepository> _employeeRepository;
         private readonly Lazy<IPositionRepository> _PositionRepository;
 
-        public RepositoryManager(HAUI_2021606204_CaoSyMinhHoangContext context)
+        public RepositoryManager(RepositoryContext context)
         {
             _context = context;
             _departmentRepository = new Lazy<IDepartmentRepository>(() => new DepartmentRepository(context));

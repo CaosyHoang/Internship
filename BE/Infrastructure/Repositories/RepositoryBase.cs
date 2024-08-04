@@ -6,8 +6,8 @@ namespace Infrastructure.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected HAUI_2021606204_CaoSyMinhHoangContext Context;
-        protected RepositoryBase(HAUI_2021606204_CaoSyMinhHoangContext context) =>
+        protected RepositoryContext Context;
+        protected RepositoryBase(RepositoryContext context) =>
             Context = context;
         public void Create(T entity) => Context.Set<T>().Add(entity);
 
