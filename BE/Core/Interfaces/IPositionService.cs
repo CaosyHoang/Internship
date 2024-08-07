@@ -1,6 +1,8 @@
-﻿namespace Core.Interfaces
+﻿using Core.Entities;
+
+namespace Core.Interfaces
 {
-    public interface IPositionService
+    public interface IPositionService : IBaseService<Position>
     {
     }
 }

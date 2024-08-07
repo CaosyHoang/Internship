@@ -1,20 +1,34 @@
 ﻿using AutoMapper;
-using Contract.Interfaces;
+using Core.Entities;
 using Core.Interfaces;
 
 namespace Core.Services
 {
-    internal sealed class PositionService : IPositionService
+    internal sealed class PositionService : BaseService<Position>, IPositionService
     {
+        #region Declaration
+
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _logger;
-        private readonly IMapper _mapper;
 
-        public PositionService(IRepositoryManager repo, ILoggerManager logger, IMapper mapper)
+        #endregion
+
+        #region Property
+        #endregion
+
+        #region Constructor
+
+        public PositionService(IRepositoryManager repo, ILoggerManager logger, IMapper mapper) : base(repo.Position, mapper)
         {
             _repo = repo;
             _logger = logger;
-            _mapper = mapper;
         }
+
+        #endregion
+
+        #region Method
+        #endregion
+
+
     }
 }

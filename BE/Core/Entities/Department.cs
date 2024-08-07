@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Infrastructure
+﻿namespace Core.Entities
 {
     /// <summary>
     /// Danh sách phòng ban
     /// </summary>
     public partial class Department
     {
-        public Department()
-        {
-            Employees = new HashSet<Employee>();
-        }
-
         public Guid DepartmentId { get; set; }
         /// <summary>
         /// Mã phòng ban
@@ -42,7 +34,5 @@ namespace Infrastructure
         /// Mô tả
         /// </summary>
         public string? Description { get; set; }
-
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

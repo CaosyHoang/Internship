@@ -1,6 +1,8 @@
-﻿namespace Core.Interfaces
+﻿using Core.Entities;
+
+namespace Core.Interfaces
 {
-    public interface IDepartmentService
+    public interface IDepartmentService : IBaseService<Department>
     {
     }
 }

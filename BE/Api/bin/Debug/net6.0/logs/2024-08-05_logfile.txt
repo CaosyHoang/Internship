@@ -1,0 +1,13 @@
+2024-08-05 16:40:31.9367 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 16:41:21.5316 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 16:41:29.2278 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 16:41:35.9063 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 16:41:53.6966 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 16:42:21.7488 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 17:06:24.9828 ERROR Something went wrong: Hay quas
+2024-08-05 17:06:38.9406 ERROR Something went wrong: Serialization and deserialization of 'System.DateOnly' instances are not supported. The unsupported member type is located on type 'System.Nullable`1[System.DateOnly]'. Path: $.dateOfBirth | LineNumber: 6 | BytePositionInLine: 29.
+2024-08-05 17:06:47.0893 ERROR Something went wrong: Hay quas
+2024-08-05 17:08:15.0893 ERROR Something went wrong: Hay quas
+2024-08-05 17:09:57.4012 ERROR Something went wrong: Hay quas
+2024-08-05 17:45:41.4582 ERROR Đã xảy ra lỗi: Vả lỗi vào mặt!
+2024-08-05 17:52:02.6066 ERROR Đã xảy ra lỗi: Vả lỗi vào mặt!

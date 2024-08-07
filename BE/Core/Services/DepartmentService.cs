@@ -1,20 +1,33 @@
 ﻿using AutoMapper;
-using Contract.Interfaces;
+using Core.Entities;
 using Core.Interfaces;
 
 namespace Core.Services
 {
-    internal sealed class DepartmentService : IDepartmentService
+    internal sealed class DepartmentService : BaseService<Department>, IDepartmentService
     {
+        #region Declaration
+
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _logger;
-        private readonly IMapper _mapper;
 
-        public DepartmentService(IRepositoryManager repo, ILoggerManager logger, IMapper mapper)
+        #endregion
+
+        #region Property
+        #endregion
+
+        #region Constructor
+        public DepartmentService(IRepositoryManager repo, ILoggerManager logger, IMapper mapper) : base(repo.Department, mapper)
         {
             _repo = repo;
             _logger = logger;
-            _mapper = mapper;
         }
+
+        #endregion
+
+        #region Method
+        #endregion
+
+
     }
 }

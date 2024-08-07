@@ -1,13 +1,31 @@
-﻿using Contract.Interfaces;
+﻿using Infrastructure.Interfaces;
+using Core.Entities;
+using Core.Interfaces;
 
 namespace Infrastructure.Repositories
 {
-    internal sealed class PositionRepository : RepositoryBase<Employee>, IPositionRepository
+    internal sealed class PositionRepository : BaseRepository<Position>, IPositionRepository
     {
-        public PositionRepository(RepositoryContext context)
-            : base(context)
+        #region Declaration
+        #endregion
+
+        #region Property
+        #endregion
+
+        #region Constructor
+
+        public PositionRepository(IDapperContext context)
+                : base(context)
         {
 
         }
+
+        #endregion
+
+        #region Method
+        #endregion
     }
 }
+
+
+

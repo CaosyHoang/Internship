@@ -1,13 +1,9 @@
-﻿using Contract.Interfaces;
-using Contracts;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Services;
-using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
 using LoggerService;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Api.Extensions
 {
@@ -29,14 +25,8 @@ namespace Api.Extensions
             services.AddScoped<IRepositoryManager, RepositoryManager>();
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager, ServiceManager>();
-        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureSqlContext(this IServiceCollection services)
         {
-            services.AddDbContext<RepositoryContext>(opts =>
-            {
-                string connectionString = configuration.GetConnectionString("mySqlConnection");
-                opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-            });
-
             services.AddScoped<IDapperContext, MariaDbContext>();
         }
 

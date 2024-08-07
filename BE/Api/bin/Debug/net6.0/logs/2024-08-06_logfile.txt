@@ -1,0 +1,52 @@
+2024-08-06 09:37:28.7975 ERROR Đã xảy ra lỗi: Conflicting method/path combination "GET api/v1/employees" for actions - Api.Controllers.EmployeesController.Custommers (Api),Api.Controllers.EmployeesController.Test (Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+2024-08-06 09:37:48.5695 ERROR Đã xảy ra lỗi: Conflicting method/path combination "GET api/v1/employees" for actions - Api.Controllers.EmployeesController.Custommers (Api),Api.Controllers.EmployeesController.Test (Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+2024-08-06 09:50:53.7725 ERROR Đã xảy ra lỗi: Unable to resolve service for type 'Core.Interfaces.IEmployeeRepository' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-06 09:52:17.3461 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 09:54:29.9841 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 09:55:42.5490 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 09:59:03.4049 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:09:54.0302 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:14:09.9173 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:19:55.4281 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:21:43.5418 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:25:03.2189 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:27:23.8794 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:29:36.3116 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 10:32:53.3686 ERROR Đã xảy ra lỗi: Serialization and deserialization of 'System.Action' instances are not supported. Path: $.MoveNextAction.
+2024-08-06 13:37:11.2233 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:48:45.8896 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:49:00.3220 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:49:28.9563 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:49:50.5018 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:50:57.3698 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 13:53:30.9282 ERROR Đã xảy ra lỗi: Error parsing column 5 (DateOfBirth=9/13/1956 12:00:00 AM - DateTime)
+2024-08-06 14:10:57.7388 ERROR Đã xảy ra lỗi: Error parsing column 8 (IdentityDate=12/19/1996 12:00:00 AM - DateTime)
+2024-08-06 14:11:57.6140 ERROR Đã xảy ra lỗi: Error parsing column 8 (IdentityDate=12/19/1996 12:00:00 AM - DateTime)
+2024-08-06 15:59:08.0323 ERROR Đã xảy ra lỗi: Conflicting method/path combination "GET api/v1/employees" for actions - Api.Controllers.EmployeesController.GetCount (Api),Api.Controllers.EmployeesController.Get (Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+2024-08-06 16:01:28.2486 ERROR Đã xảy ra lỗi: Conflicting method/path combination "GET api/v1/employees" for actions - Api.Controllers.EmployeesController.GetCount (Api),Api.Controllers.EmployeesController.Get (Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+2024-08-06 16:06:51.8159 ERROR Đã xảy ra lỗi: Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+2024-08-06 16:10:55.0848 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+EmployeeDto -> Employee
+Core.DTOs.EmployeeDto -> Core.Entities.Employee
+2024-08-06 16:12:25.2858 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+EmployeeDto -> Employee
+Core.DTOs.EmployeeDto -> Core.Entities.Employee
+2024-08-06 16:15:14.7953 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+EmployeeDto -> Employee
+Core.DTOs.EmployeeDto -> Core.Entities.Employee
+2024-08-06 16:20:40.2802 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+EmployeeDto -> Employee
+Core.DTOs.EmployeeDto -> Core.Entities.Employee
+2024-08-06 16:29:58.0112 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-06 17:42:26.0382 ERROR Đã xảy ra lỗi: Object does not match target type.
+2024-08-06 17:45:03.5145 ERROR Đã xảy ra lỗi: Object does not match target type.
+2024-08-06 17:47:23.7642 ERROR Đã xảy ra lỗi: Object does not match target type.
+2024-08-06 17:50:22.6898 ERROR Đã xảy ra lỗi: Object does not match target type.

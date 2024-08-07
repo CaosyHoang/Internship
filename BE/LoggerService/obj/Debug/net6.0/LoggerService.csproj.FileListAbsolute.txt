@@ -17,8 +17,6 @@ E:\Internship\LoggerService\bin\Debug\net6.0\Contracts.pdb
 E:\Internship\BE\LoggerService\bin\Debug\net6.0\LoggerService.deps.json
 E:\Internship\BE\LoggerService\bin\Debug\net6.0\LoggerService.dll
 E:\Internship\BE\LoggerService\bin\Debug\net6.0\LoggerService.pdb
-E:\Internship\BE\LoggerService\bin\Debug\net6.0\Contracts.dll
-E:\Internship\BE\LoggerService\bin\Debug\net6.0\Contracts.pdb
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\LoggerService.csproj.AssemblyReference.cache
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\LoggerService.GeneratedMSBuildEditorConfig.editorconfig
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\LoggerService.AssemblyInfoInputs.cache
@@ -30,3 +28,5 @@ E:\Internship\BE\LoggerService\obj\Debug\net6.0\LoggerService.dll
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\refint\LoggerService.dll
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\LoggerService.pdb
 E:\Internship\BE\LoggerService\obj\Debug\net6.0\ref\LoggerService.dll
+E:\Internship\BE\LoggerService\bin\Debug\net6.0\Core.dll
+E:\Internship\BE\LoggerService\bin\Debug\net6.0\Core.pdb

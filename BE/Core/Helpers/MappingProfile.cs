@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
-using Core.Models;
-using Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Core.DTOs;
+using Core.Entities;
 
 namespace Core.Helpers
 {
@@ -14,7 +8,9 @@ namespace Core.Helpers
     {
         public MappingProfile()
         {
-            CreateMap<Employee, EmployeeModel>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<Department, DepartmentDto>().ReverseMap();
+            CreateMap<Position, PositionDto>().ReverseMap();
         }
     }
 }

@@ -9,9 +9,8 @@
       "Core/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "Contracts": "1.0.0",
           "Dapper": "2.1.35",
-          "Microsoft.EntityFrameworkCore": "6.0.32",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "MySqlConnector": "2.3.7",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.3"
         },
@@ -50,11 +49,34 @@
           }
         }
       },
-      "Microsoft.CSharp/4.7.0": {},
-      "Microsoft.EntityFrameworkCore/6.0.32": {
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.32",
-          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.32",
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.18316"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.18316"
+          }
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {},
+      "Microsoft.EntityFrameworkCore/6.0.28": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.28",
+          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.28",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
           "Microsoft.Extensions.Logging": "6.0.0",
@@ -63,23 +85,23 @@
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "6.0.32.0",
-            "fileVersion": "6.0.3224.26906"
+            "assemblyVersion": "6.0.28.0",
+            "fileVersion": "6.0.2824.11604"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/6.0.32": {
+      "Microsoft.EntityFrameworkCore.Abstractions/6.0.28": {
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "6.0.32.0",
-            "fileVersion": "6.0.3224.26906"
+            "assemblyVersion": "6.0.28.0",
+            "fileVersion": "6.0.2824.11604"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/6.0.32": {},
+      "Microsoft.EntityFrameworkCore.Analyzers/6.0.28": {},
       "Microsoft.EntityFrameworkCore.Relational/6.0.28": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "6.0.32",
+          "Microsoft.EntityFrameworkCore": "6.0.28",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
         },
         "runtime": {
@@ -234,11 +256,7 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "Contracts/1.0.0": {
-        "runtime": {
-          "Contracts.dll": {}
-        }
-      }
+      "System.Text.Encodings.Web/4.5.0": {}
     }
   },
   "libraries": {
@@ -268,6 +286,20 @@
       "path": "dapper/2.1.35",
       "hashPath": "dapper.2.1.35.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "hashPath": "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ziFz5zH8f33En4dX81LW84I6XrYXKf9jg6aM39cM+LffN9KJahViKZ61dGMSO2gd3e+qe5yBRwsesvyqlZaSMg==",
+      "path": "microsoft.aspnetcore.http.features/2.2.0",
+      "hashPath": "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -275,26 +307,26 @@
       "path": "microsoft.csharp/4.7.0",
       "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/6.0.32": {
+    "Microsoft.EntityFrameworkCore/6.0.28": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-g3kACXbTWZx4Oy7e3+8eWTe1658p6GeTgzjW9xCsItZWr8KHUcpBdP4hSn1eOHVAEFS/GUaswRokk0+sFFTAgQ==",
-      "path": "microsoft.entityframeworkcore/6.0.32",
-      "hashPath": "microsoft.entityframeworkcore.6.0.32.nupkg.sha512"
+      "sha512": "sha512-B0/OgYIf4Jy+ZXxU1tQ29m235K63h6wadL9lnUPN7lFAeJRrwNXynFFAGDibgUjJvimZvbGxtF+AiJaODoRrig==",
+      "path": "microsoft.entityframeworkcore/6.0.28",
+      "hashPath": "microsoft.entityframeworkcore.6.0.28.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/6.0.32": {
+    "Microsoft.EntityFrameworkCore.Abstractions/6.0.28": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rkvYDFH414rr4x8yGwPqHhws+52+uJqEWod+AmpjR9iiSS1lp8i4pJ9NOQGlttMHb2sJvL5Gt/YSqk0ptDVXzA==",
-      "path": "microsoft.entityframeworkcore.abstractions/6.0.32",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.6.0.32.nupkg.sha512"
+      "sha512": "sha512-qLfDuiCvcoIY7IWbXuHCqILYyzV2rXcAh1tnkmYxA5ZfJq0wHIZrRoYP7LNJZttpq5cFyWRK5X6R2tP/M4M+Lw==",
+      "path": "microsoft.entityframeworkcore.abstractions/6.0.28",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.6.0.28.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/6.0.32": {
+    "Microsoft.EntityFrameworkCore.Analyzers/6.0.28": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pOlf6xYC6MUbcDEZ019GeRBgWl4P7w9zXI12ZRYmWjsdlA/VHTKzlnRr21LlHpZNvj/0JEPzXTds399GfDESGg==",
-      "path": "microsoft.entityframeworkcore.analyzers/6.0.32",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.32.nupkg.sha512"
+      "sha512": "sha512-9Y6RC2WMVvNGkhUEcxQGTpYgoebuoIm63acQYEzFVqxZeN9el47aXnypW5JJW3L7/tBkGMvDcQ8hG4t+SJmpHg==",
+      "path": "microsoft.entityframeworkcore.analyzers/6.0.28",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.28.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/6.0.28": {
       "type": "package",
@@ -401,10 +433,12 @@
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
-    "Contracts/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
+    "System.Text.Encodings.Web/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xg4G4Indi4dqP1iuAiMSwpiWS54ZghzR644OtsRCm/m/lBMG8dUBhLVN7hLm8NNrNTR+iGbshCPTwrvxZPlm4g==",
+      "path": "system.text.encodings.web/4.5.0",
+      "hashPath": "system.text.encodings.web.4.5.0.nupkg.sha512"
     }
   }
 }

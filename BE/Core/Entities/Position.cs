@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Infrastructure
+﻿namespace Core.Entities
 {
     /// <summary>
     /// Danh sách chức vụ
     /// </summary>
     public partial class Position
     {
-        public Position()
-        {
-            Employees = new HashSet<Employee>();
-        }
-
         public Guid PositionId { get; set; }
         /// <summary>
         /// Mã chức vụ
@@ -42,7 +34,5 @@ namespace Infrastructure
         /// Mô tả
         /// </summary>
         public string? Description { get; set; }
-
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

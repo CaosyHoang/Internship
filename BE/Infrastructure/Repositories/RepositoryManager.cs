@@ -1,26 +1,36 @@
-﻿using Contract.Interfaces;
-using MySqlConnector;
-using System.Data;
+﻿using Core.Interfaces;
+using Infrastructure.Interfaces;
 
 namespace Infrastructure.Repositories
 {
     public sealed class RepositoryManager : IRepositoryManager
     {
-        private readonly RepositoryContext _context;
+        #region Declaration
+
+        private readonly IDapperContext _context;
         private readonly Lazy<IDepartmentRepository> _departmentRepository;
         private readonly Lazy<IEmployeeRepository> _employeeRepository;
-        private readonly Lazy<IPositionRepository> _PositionRepository;
+        private readonly Lazy<IPositionRepository> _positionRepository;
 
-        public RepositoryManager(RepositoryContext context)
+        #endregion
+
+        #region Constructor
+
+        public RepositoryManager(IDapperContext context)
         {
             _context = context;
             _departmentRepository = new Lazy<IDepartmentRepository>(() => new DepartmentRepository(context));
             _employeeRepository = new Lazy<IEmployeeRepository>(() => new EmployeeRepository(context));
-            _PositionRepository = new Lazy<IPositionRepository>(() => new PositionRepository(context));
+            _positionRepository = new Lazy<IPositionRepository>(() => new PositionRepository(context));
         }
+
+        #endregion
+
+        #region Method
         public IDepartmentRepository Department => _departmentRepository.Value;
         public IEmployeeRepository Employee => _employeeRepository.Value;
-        public IPositionRepository Position => _PositionRepository.Value;
-        public void Save() => _context.SaveChanges();
+        public IPositionRepository Position => _positionRepository.Value;
+
+        #endregion
     }
 }

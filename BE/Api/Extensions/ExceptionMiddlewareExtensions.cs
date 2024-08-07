@@ -1,5 +1,7 @@
-﻿using Contract.Interfaces;
-using Core.ErrorModel;
+﻿using Core.DTOs;
+using Core.Exceptions;
+using Core.Interfaces;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
@@ -13,23 +15,43 @@ namespace Api.Extensions
             {
                 appError.Run(async context =>
                 {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
 
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        logger.LogError($"Something went wrong: {contextFeature.Error.Message}");
-                        await context.Response.WriteAsync(new ErrorDetails()
+                        logger.LogError($"Đã xảy ra lỗi: {contextFeature.Error.Message}");
+
+                        int statusCode = (int)HttpStatusCode.InternalServerError;
+                        var Errors = new List<string>();
+
+                        // Xử lý các loại exception:
+                        switch (contextFeature.Error)
                         {
-                            StatusCode = context.Response.StatusCode,
-                            Message = "Internet Server Error.",
-                        }.ToString());
+                            case ValidateException exception:
+                                statusCode = exception.StatusCode;
+                                Errors.Add(exception.Message);
+                                break;
+                            case Exception exception:
+                                Errors.Add(exception.Message);
+                                break;
+                            // Log chi tiết hơn cho các lỗi không xác định:
+                            default:
+                                logger.LogError($"Đã xảy ra lỗi: {contextFeature.Error}");
+                                break;
+                        }
+                        context.Response.StatusCode = statusCode;
+                        var res = new ResultDetails()
+                        {
+                            Success = false,
+                            Data = null,
+                            StatusCode = statusCode,
+                        };
+                        res.Errors.AddRange(Errors);
+                        await context.Response.WriteAsync(res.ToString());
                     }
                 });
             });
-
-
         }
     }
 }

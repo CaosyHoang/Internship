@@ -19,12 +19,9 @@ E:\Internship\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.ca
 E:\Internship\Infrastructure\bin\Debug\net6.0\Contracts.dll
 E:\Internship\Infrastructure\bin\Debug\net6.0\Contracts.pdb
 E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Infrastructure.deps.json
-E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
 E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Infrastructure.dll
 E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Infrastructure.pdb
-E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Contracts.dll
 E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Core.dll
-E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Contracts.pdb
 E:\Internship\BE\Infrastructure\bin\Debug\net6.0\Core.pdb
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastructure.csproj.AssemblyReference.cache
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
@@ -36,5 +33,4 @@ E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastr.15EFFBFE.Up2Date
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastructure.dll
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\refint\Infrastructure.dll
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastructure.pdb
-E:\Internship\BE\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache
 E:\Internship\BE\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll

@@ -4,14 +4,14 @@
     "E:\\Internship\\BE\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\Internship\\BE\\Contracts\\Contracts.csproj": {
+    "E:\\Internship\\BE\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Internship\\BE\\Contracts\\Contracts.csproj",
-        "projectName": "Contracts",
-        "projectPath": "E:\\Internship\\BE\\Contracts\\Contracts.csproj",
+        "projectUniqueName": "E:\\Internship\\BE\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "E:\\Internship\\BE\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\caosy\\.nuget\\packages\\",
-        "outputPath": "E:\\Internship\\BE\\Contracts\\obj\\",
+        "outputPath": "E:\\Internship\\BE\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\caosy\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,71 +45,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "E:\\Internship\\BE\\Core\\Core.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\Internship\\BE\\Core\\Core.csproj",
-        "projectName": "Core",
-        "projectPath": "E:\\Internship\\BE\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\caosy\\.nuget\\packages\\",
-        "outputPath": "E:\\Internship\\BE\\Core\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\caosy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "E:\\Internship\\BE\\Contracts\\Contracts.csproj": {
-                "projectPath": "E:\\Internship\\BE\\Contracts\\Contracts.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -119,9 +54,9 @@
               "target": "Package",
               "version": "[2.1.35, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[6.0.32, )"
+              "version": "[2.2.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
@@ -177,9 +112,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Internship\\BE\\Contracts\\Contracts.csproj": {
-                "projectPath": "E:\\Internship\\BE\\Contracts\\Contracts.csproj"
-              },
               "E:\\Internship\\BE\\Core\\Core.csproj": {
                 "projectPath": "E:\\Internship\\BE\\Core\\Core.csproj"
               }
@@ -200,20 +132,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.32, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.32, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

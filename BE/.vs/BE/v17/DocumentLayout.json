@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "E:\\Internship\\BE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|e:\\internship\\be\\api\\controllers\\positionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|solutionrelative:api\\controllers\\positionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\interfaces\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\interfaces\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|e:\\internship\\be\\api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|solutionrelative:api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C75CDC3E-EDA4-49EF-B25E-9221AC89E07F}|Infrastructure\\Infrastructure.csproj|e:\\internship\\be\\infrastructure\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C75CDC3E-EDA4-49EF-B25E-9221AC89E07F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C75CDC3E-EDA4-49EF-B25E-9221AC89E07F}|Infrastructure\\Infrastructure.csproj|e:\\internship\\be\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C75CDC3E-EDA4-49EF-B25E-9221AC89E07F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +43,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PositionsController.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Api\\Controllers\\PositionsController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\PositionsController.cs",
+              "ToolTip": "E:\\Internship\\BE\\Api\\Controllers\\PositionsController.cs",
+              "RelativeToolTip": "Api\\Controllers\\PositionsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:40:44.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "EmployeesController.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Api\\Controllers\\EmployeesController.cs",
               "RelativeDocumentMoniker": "Api\\Controllers\\EmployeesController.cs",
               "ToolTip": "E:\\Internship\\BE\\Api\\Controllers\\EmployeesController.cs",
               "RelativeToolTip": "Api\\Controllers\\EmployeesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAASAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAkwFgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-03T14:26:49.097Z",
+              "WhenOpened": "2024-08-07T07:34:46.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IBaseRepository.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseRepository.cs",
+              "RelativeDocumentMoniker": "Core\\Interfaces\\IBaseRepository.cs",
+              "ToolTip": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseRepository.cs",
+              "RelativeToolTip": "Core\\Interfaces\\IBaseRepository.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAswEEAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:22:26.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Infrastructure\\Repositories\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\EmployeeRepository.cs",
+              "ToolTip": "E:\\Internship\\BE\\Infrastructure\\Repositories\\EmployeeRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\EmployeeRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:22:07.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ToolTip": "E:\\Internship\\BE\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAIwFcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:22:02.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IBaseService.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseService.cs",
+              "RelativeDocumentMoniker": "Core\\Interfaces\\IBaseService.cs",
+              "ToolTip": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseService.cs",
+              "RelativeToolTip": "Core\\Interfaces\\IBaseService.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAiwCEAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:21:33.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "E:\\Internship\\BE\\Core\\Services\\BaseService.cs",
+              "RelativeDocumentMoniker": "Core\\Services\\BaseService.cs",
+              "ToolTip": "E:\\Internship\\BE\\Core\\Services\\BaseService.cs",
+              "RelativeToolTip": "Core\\Services\\BaseService.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAAAD4AAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T06:38:27.621Z",
               "EditorCaption": ""
             }
           ]

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Infrastructure
+﻿namespace Core.Entities
 {
     /// <summary>
     /// Danh sách nhân viên
@@ -22,7 +19,7 @@ namespace Infrastructure
         /// <summary>
         /// Ngày sinh
         /// </summary>
-        public DateOnly? DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         /// <summary>
         /// Giới tính 0-Nam, 1-Nữ, 2-Khác
         /// </summary>
@@ -34,11 +31,11 @@ namespace Infrastructure
         /// <summary>
         /// Ngày cấp
         /// </summary>
-        public DateOnly? IdentityDate { get; set; }
+        public DateTime? IdentityDate { get; set; }
         /// <summary>
         /// Nơi cấp
         /// </summary>
-        public string? IndentityPlace { get; set; }
+        public string? IdentityPlace { get; set; }
         /// <summary>
         /// Địa chỉ
         /// </summary>
@@ -87,8 +84,5 @@ namespace Infrastructure
         /// Lương
         /// </summary>
         public decimal? Salary { get; set; }
-
-        public virtual Department? Department { get; set; }
-        public virtual Position? Position { get; set; }
     }
 }

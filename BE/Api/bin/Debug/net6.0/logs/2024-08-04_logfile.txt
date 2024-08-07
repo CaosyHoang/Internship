@@ -1,0 +1,15 @@
+2024-08-04 16:51:51.5015 ERROR Something went wrong: Connection is not open.
+2024-08-04 16:57:21.5734 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:57:52.4203 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:58:36.9247 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:58:39.9656 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:59:24.0278 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:59:29.9222 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 16:59:58.1229 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:00:36.6130 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:01:17.0184 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:05:11.8726 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:05:25.1659 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:08:05.4038 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:08:25.1149 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
+2024-08-04 17:12:39.2209 ERROR Something went wrong: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'Api.Controllers.EmployeesController'.
