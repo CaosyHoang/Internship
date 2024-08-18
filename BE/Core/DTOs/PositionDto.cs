@@ -1,4 +1,7 @@
-﻿namespace Core.DTOs
+﻿using Core.Const;
+using System.ComponentModel.DataAnnotations;
+
+namespace Core.DTOs
 {
     public class PositionDto
     {
@@ -6,27 +9,13 @@
         /// <summary>
         /// Mã chức vụ
         /// </summary>
+        [Required(ErrorMessage = PositionConst.ERROR_POSITIONCODE_EMPTY)]
         public string PositionCode { get; set; } = null!;
         /// <summary>
         /// Tên chức vụ
         /// </summary>
+        [Required(ErrorMessage = PositionConst.ERROR_POSITIONNAME_EMPTY)]
         public string PositionName { get; set; } = null!;
-        /// <summary>
-        /// Người tạo
-        /// </summary>
-        public string? CreatedBy { get; set; }
-        /// <summary>
-        /// Ngày tạo
-        /// </summary>
-        public DateTime? CreatedDate { get; set; }
-        /// <summary>
-        /// Người sửa
-        /// </summary>
-        public string? ModifiedBy { get; set; }
-        /// <summary>
-        /// Ngày sửa
-        /// </summary>
-        public DateTime? ModifiedDate { get; set; }
         /// <summary>
         /// Mô tả
         /// </summary>

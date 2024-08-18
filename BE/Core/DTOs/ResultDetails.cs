@@ -10,7 +10,7 @@ namespace Core.DTOs
         public bool Success { get; set; }
         /// <summary>
         /// Dữ liệu trả về
-        /// </summary>
+        /// </summary>/
         public object? Data { get; set; }
         /// <summary>
         /// Trạng thái HTTP
@@ -20,6 +20,10 @@ namespace Core.DTOs
         /// Danh sách lỗi
         /// </summary>
         public List<string> Errors { get; set; } = new List<string>();
-        public override string ToString() => JsonSerializer.Serialize(this);
+        public override string ToString() => JsonSerializer.Serialize(this, new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
+
     }
 }

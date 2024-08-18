@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Code_Not_Existing_Exception" xml:space="preserve">
+    <value>Mã nhân viên không tồn tại trong hệ thống.</value>
+  </data>
+  <data name="Date_Error_Exception" xml:space="preserve">
+    <value>Định dạng Date không hợp lệ, vui lòng nhập đúng format (dd/MM/yyyy).</value>
+  </data>
   <data name="Delete_Error_Exception" xml:space="preserve">
     <value>Có lỗi trong quá trình xóa.</value>
   </data>
   <data name="Duplicate_EmployeeCode_Exception" xml:space="preserve">
     <value>Mã nhân viên đã tồn tại trong hệ thống.</value>
   </data>
+  <data name="Excel_File_Invalid_Exception" xml:space="preserve">
+    <value>Định dạng tệp tin Excel không hợp lệ.</value>
+  </data>
+  <data name="Insert_Error_Exception" xml:space="preserve">
+    <value>Có lỗi trong quá trình thêm.</value>
+  </data>
   <data name="LimitPage_Exception" xml:space="preserve">
     <value>Số bản ghi tối đa không hợp lệ.</value>
+  </data>
+  <data name="Limit_File_Exception" xml:space="preserve">
+    <value>Kích thước tệp vượt quá kích thước tối đa cho phép (10MB).</value>
+  </data>
+  <data name="Null_File_Exception" xml:space="preserve">
+    <value>Không có file nào được tải lên.</value>
   </data>
   <data name="NumPage_Exception" xml:space="preserve">
     <value>Số trang không hợp lệ.</value>

@@ -1,4 +1,7 @@
-﻿namespace Core.DTOs
+﻿using Core.Const;
+using System.ComponentModel.DataAnnotations;
+
+namespace Core.DTOs
 {
     public class DepartmentDto
     {
@@ -6,27 +9,13 @@
         /// <summary>
         /// Mã phòng ban
         /// </summary>
+        [Required(ErrorMessage = DepartmentConst.ERROR_DEPARTMENTCODE_EMPTY)]
         public string DepartmentCode { get; set; } = null!;
         /// <summary>
         /// Tên phòng ban
         /// </summary>
+        [Required(ErrorMessage = DepartmentConst.ERROR_DEPARTMENTNAME_EMPTY)]
         public string DepartmentName { get; set; } = null!;
-        /// <summary>
-        /// Người tạo
-        /// </summary>
-        public string? CreatedBy { get; set; }
-        /// <summary>
-        /// Ngày tạo
-        /// </summary>
-        public DateTime? CreatedDate { get; set; }
-        /// <summary>
-        /// Người sửa
-        /// </summary>
-        public string? ModifiedBy { get; set; }
-        /// <summary>
-        /// Ngày sửa
-        /// </summary>
-        public DateTime? ModifiedDate { get; set; }
         /// <summary>
         /// Mô tả
         /// </summary>

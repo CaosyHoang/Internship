@@ -1,4 +1,6 @@
-﻿namespace Core.Entities
+﻿using Core.Const;
+
+namespace Core.Entities
 {
     /// <summary>
     /// Danh sách nhân viên
@@ -23,7 +25,7 @@
         /// <summary>
         /// Giới tính 0-Nam, 1-Nữ, 2-Khác
         /// </summary>
-        public int? Gender { get; set; }
+        public int Gender { get; set; }
         /// <summary>
         /// Số CMTND, CCCD
         /// </summary>

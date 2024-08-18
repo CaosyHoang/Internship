@@ -18,28 +18,35 @@
         /// <summary>
         /// Chèn một bản ghi
         /// </summary>
-        /// <param name="entity">Đối tượng</param>
+        /// <param name="entity">Đối tượng Insert</param>
         /// <returns>Nếu thành công trả về true, ngược lại trả về false</returns>
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<bool> InsertAsync(T entity);
         /// <summary>
+        /// Chèn nhiều bản ghi
+        /// </summary>
+        /// <param name="entities">Danh sách đối tượng Insert</param>
+        /// <returns>Nếu thành công trả về true, ngược lại trả về false</returns>
+        /// CreatedBy: Minh Hoàng (08/05/2024)
+        Task<bool> InsertMultiAsync(List<T> entities);
+        /// <summary>
         /// Sửa một bản ghi
         /// </summary>
-        /// <param name="entity">Đối tượng</param>
+        /// <param name="entity">Đối tượng sửa</param>
         /// <returns>Nếu thành công trả về true, ngược lại trả về false</returns>
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<bool> UpdateAsync(T entity);
         /// <summary>
         /// Xóa một bản ghi theo id
         /// </summary>
-        /// <param name="id">Đối tượng</param>
+        /// <param name="id">Id đối tượng cần xóa</param>
         /// <returns>Nếu thành công trả về true, ngược lại trả về false</returns>
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<bool> DeleteAsync(Guid id);
         /// <summary>
         /// Xóa nhiều bản ghi theo danh sach id (sử dụng transaction)
         /// </summary>
-        /// <param name="ids">Danh sách Id</param>
+        /// <param name="ids">Danh sách Id đối tượng cần xóa</param>
         /// <returns>Nếu thành công trả về true, ngược lại trả về false</returns>
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<bool> DeleteMultiAsync(List<Guid> ids);

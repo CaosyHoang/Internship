@@ -60,11 +60,11 @@ namespace Core.Services
             };
         }
 
-        public async Task<ResultDetails> LoadDataAsync(int limit, int number)
+        public async Task<ResultDetails> LoadDataAsync<Y>(int limit, int number)
         {
             // Kiểm tra hợp lệ:
             var count = await _repository.CountRecordAsync();
-            var page = Convert.ToInt32(count / limit);
+            var page = Math.Ceiling(count / (double)limit);
             if (limit <= 0)
             {
                 throw new ValidateException(Resource.ExceptionsResource.LimitPage_Exception);
@@ -78,7 +78,7 @@ namespace Core.Services
             return new ResultDetails
             {
                 Success = true,
-                Data = res,
+                Data = _mapper.Map<List<Y>>(res),
                 StatusCode = (int)HttpStatusCode.OK,
             };
         }
@@ -95,9 +95,24 @@ namespace Core.Services
             return res;
         }
 
-        public async Task<ResultDetails> GetAllAsync()
+        public async Task<ResultDetails> GetAllAsync<Y>()
         {
             var res = await _repository.GetAsync();
+            return new ResultDetails
+            {
+                Success = true,
+                Data = _mapper.Map<List<Y>>(res),
+                StatusCode = (int)HttpStatusCode.OK,
+            };
+        }
+
+        public async Task<ResultDetails> DeleteAsync(Guid id)
+        {
+            var res = await _repository.DeleteAsync(id);
+            if (res == false)
+            {
+                throw new ValidateException(Resource.ExceptionsResource.Server_Exception);
+            }
             return new ResultDetails
             {
                 Success = true,
@@ -106,9 +121,21 @@ namespace Core.Services
             };
         }
 
-        public async Task<ResultDetails> DeleteAsync(Guid id)
+        public async Task<ResultDetails> GetAsync<Y>(Guid id)
         {
-            var res = await _repository.DeleteAsync(id);
+            var res = await _repository.GetAsync(id);
+            return new ResultDetails
+            {
+                Success = true,
+                Data = _mapper.Map<Y>(res),
+                StatusCode = (int)HttpStatusCode.OK,
+            };
+        }
+
+        public async  Task<ResultDetails> UpdateAsync(T entity)
+        {
+            // Sửa dữ liệu:
+            var res = await _repository.UpdateAsync(entity);
             if (res == false)
             {
                 throw new ValidateException(Resource.ExceptionsResource.Server_Exception);

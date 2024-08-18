@@ -9,9 +9,9 @@
     width: 200px;
     margin: 0;
 }
-.header__brand i{
-    margin: 20px;
-    font-size: 16px;
+.header__toggle{
+    height: 35px;
+    margin: 5px;
 }
 .header__logo{
     height: 32px;

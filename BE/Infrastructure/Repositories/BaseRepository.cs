@@ -1,7 +1,6 @@
 ﻿using Core.Exceptions;
 using Core.Interfaces;
 using Infrastructure.Interfaces;
-using static Dapper.SqlMapper;
 
 namespace Infrastructure.Repositories
 {
@@ -33,7 +32,7 @@ namespace Infrastructure.Repositories
             // Bắt đầu một phiên giao dịch:
             _context.Connection.Open();
             _context.Transaction = _context.Connection.BeginTransaction();
-            // Duyệt từng ids;
+            // Duyệt từng id:
             foreach (var id in ids)
             {
                 if (await _context.DeleteAsync<T>(id) != 0)
@@ -94,6 +93,27 @@ namespace Infrastructure.Repositories
         {
             var res = await _context.GetAsync<T>(limit, number);
             return res;
+        }
+
+        public async Task<bool> InsertMultiAsync(List<T> entities)
+        {
+            // Bắt đầu một phiên giao dịch:
+            _context.Connection.Open();
+            _context.Transaction = _context.Connection.BeginTransaction();
+            // Duyệt từng entity:
+            foreach (var entity in entities)
+            {
+                if (await _context.InsertAsync(entity) != 0)
+                {
+                    // Khôi phục lại trạng thái ban đầu:
+                    _context.Transaction.Rollback();
+                    return false;
+                    throw new ValidateException(Core.Resource.ExceptionsResource.Insert_Error_Exception);
+                }
+            }
+            // Lưu thay đổi:
+            _context.Transaction.Commit();
+            return true;
         }
 
         #endregion

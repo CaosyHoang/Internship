@@ -1,0 +1,5 @@
+2024-08-16 23:15:16.6996 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> EmployeeDto
+System.Collections.Generic.List`1[[Core.Entities.Employee, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Core.DTOs.EmployeeDto

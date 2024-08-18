@@ -1,11 +1,16 @@
 window.onload = function () {
   new EmployeePage();
 };
-
+function test() {
+  alert("dasdas");
+}
 class EmployeePage {
   pageTitle = "Quản lý khách hàng";
+  number = 1;
+  limit = 10;
+  count = 0;
+  page = 0;
   inputInvalid = [];
-  employees = [];
   constructor() {
     this.loadData();
     this.initEvents();
@@ -23,7 +28,7 @@ class EmployeePage {
         .querySelector("#btnAdd")
         .addEventListener("click", this.btnAddOnClick.bind(this));
 
-      // Ẩn form chi tiết, thông báo toast và dialog:
+      // Ẩn form chi tiết, thông báo toast và dialog khi click close:
       const closeButtons = document.querySelectorAll(
         ".modal .modal__btn--close"
       );
@@ -33,14 +38,22 @@ class EmployeePage {
             "hidden";
         });
       }
+      // Ẩn form chi tiết, thông báo toast và dialog khi click hủy:
+      const cancelButtons = document.querySelectorAll(".modal .button--cancel");
+      for (const button of cancelButtons) {
+        button.addEventListener("click", function () {
+          this.parentElement.parentElement.parentElement.style.visibility =
+            "hidden";
+        });
+      }
 
       // Click button "Đồng ý" ẩn thông báo:
       document
-        .querySelector(".dialog--notice .dialog__button--confirm")
+        .querySelector("#notice .dialog__button--confirm")
         .addEventListener("click", function () {
           this.parentElement.parentElement.parentElement.style.visibility =
             "hidden";
-          self.inputInvalid[0].focus();
+          self.inputInvalid[0]?.focus();
         });
 
       // Click thu gọn/mở rộng sidebar
@@ -79,30 +92,59 @@ class EmployeePage {
         });
       }
 
+      // Chọn trang:
+      const selectPage = document.querySelector("#selectionPage");
+      selectPage.addEventListener("change", function () {
+        self.number = this.value;
+        self.loadData();
+      });
+
+      // Chuyển sang trang trước:
+      document.querySelector("#previousPage").addEventListener("click", () => {
+        selectPage.value = parseInt(this.number) - 1;
+        const event = new Event("change");
+        selectPage.dispatchEvent(event);
+      });
+
+      // Chuyển sang trang sau:
+      document.querySelector("#nextPage").addEventListener("click", () => {
+        selectPage.value = parseInt(this.number) + 1;
+        const event = new Event("change");
+        selectPage.dispatchEvent(event);
+      });
+
       // Lưu dữ liệu:
       document
-        .querySelector("#btnSave")
+        .querySelector("#formDetail .button--save")
         .addEventListener("click", this.btnSaveOnClick.bind(this));
-
-      // Tìm kiếm nhân viên:
-      document
-        .querySelector("#btnSearch")
-        .addEventListener("click", this.btnSearchOnClick);
 
       // Refresh dữ liệu:
       document
         .querySelector("#btnRefresh")
-        .addEventListener("click", this.btnRefreshOnClick);
+        .addEventListener("click", this.btnRefresh.bind(this));
+
+      // Tìm kiếm nhân viên khi click nút tìm kiếm:
+      const searchButton = document.querySelector("#btnSearch");
+      searchButton.addEventListener("click", function () {
+        self.btnSearchOnClick(this);
+      });
+
+      // Tìm kiếm nhân viên khi enter:
+      searchButton.previousElementSibling.addEventListener(
+        "keypress",
+        function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            self.btnSearchOnClick(this);
+            searchButton.click();
+          }
+        }
+      );
 
       // Xuất excel:
       document
         .querySelector("#btnExport")
         .addEventListener("click", this.btnExportOnClick);
-
-      // Sửa thông tin nhân viên:
-      document
-        .querySelector(".btn-change")
-        .addEventListener("click", this.btnChangeOnClick);
 
       // Copy thông tin nhân viên:
       document
@@ -129,43 +171,174 @@ class EmployeePage {
    */
   async loadData() {
     try {
-      // Gọi api lấy dữ liệu:
-      this.employees = await this.fetchData(
-        "https://cukcuk.manhnv.net/api/v1/Customers"
+      // Gọi api lấy dữ liệu nhân viên:
+      let resEmployee = await this.fetchData(
+        `https://localhost:44357/api/v1/employees/page?limit=${this.limit}&number=${this.number}`
       );
-      // Chèn dữ liệu vào bảng:
-      document.querySelector("#dataTable tbody").innerHTML =
-        this.employees.reduce((acc, cur, ind) => {
+      // Kiểm tra trạng thái request thông tin nhân viên:
+      if (!(resEmployee.success === true)) {
+        console.error(resEmployee.errors);
+        return;
+      }
+      // Gọi api lấy số lượng nhân viên:
+      let resCount = await this.fetchData(
+        `https://localhost:44357/api/v1/employees/count`
+      );
+      // Kiểm tra trạng thái request số lượng nhân viên:
+      if (!(resCount.success === true)) {
+        console.error(resCount.errors);
+        return;
+      }
+      this.count = resCount.data;
+      // Xử lý bảng:
+      this.insertToTable(resEmployee.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  /**
+   * Chèn dữ liệu vào bảng
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  insertToTable(employees) {
+    try {
+      // Số trang:
+      this.page = Math.ceil(this.count / this.limit);
+      let optionsHtml = "";
+      // Hiển thị danh sách nhân viên lên bảng:
+      document.querySelector("#dataTable tbody").innerHTML = employees.reduce(
+        (acc, cur, ind) => {
           return `${acc}
-            <tr class="table__record">
+            <tr class="table__record" id="${cur.employeeId}">
                 <td class="table__cell">${ind + 1}</td>
-                <td class="table__cell">${cur.CustomerCode}</td>
-                <td class="table__cell">${cur.FullName}</td>
-                <td class="table__cell">${cur.Gender === 1 ? "Nam" : "Nữ"}</td>
-                <td class="table__cell">${this.formatDate(cur.DateOfBirth)}</td>
-                <td class="table__cell">${cur.Email}</td>
+                <td class="table__cell">${cur.employeeCode}</td>
+                <td class="table__cell">${cur.fullName}</td>
+                <td class="table__cell">${cur.genderName}</td>
+                <td class="table__cell">${this.formatDate(cur.dateOfBirth)}</td>
+                <td class="table__cell">${cur.email}</td>
                 <td class="table__cell">
-                    ${cur.Address}
+                    ${cur.address ?? ""}
                     <div class="table__option">
-                        <button class="button button--symbol">
+                        <button class="button button--symbol button--update" title="Sửa">
                             <i class="fas fa-pen button-icon"></i>
-                        </button>
-                        <button class="button button--symbol">
+                        </button> 
+                        <button class="button button--symbol button--copy" title="Sao chép">
                             <i class="far fa-copy button-icon"></i>
                         </button>
-                        <button class="button button--symbol">
+                        <button class="button button--symbol button--delete" title="Xóa">
                             <img src="./assets/icon/close-48.png" class="button-icon" alt="Xóa">
                         </button>
                     </div>
                 </td>
             </tr>`;
-        }, "");
+        },
+        ""
+      );
+      // Thêm sự kiện xóa cho hàng:
+      const deleteButtons = document.querySelectorAll(
+        ".table__option .button--delete"
+      );
+      for (const node of deleteButtons) {
+        node.addEventListener("click", () => {
+          let title = "Xác nhận xóa nhân viên";
+          let message = "Bạn có chắc muốn xóa nhân viên này không?";
+          let callback = () => {
+            this.handleDelete(node);
+          };
+          this.displayConfirm(message, title, callback);
+        });
+      }
+
+      // Thêm sự kiện sửa cho hàng:
+      const updateButtons = document.querySelectorAll(
+        ".table__option .button--update"
+      );
+      for (const node of updateButtons) {
+        node.addEventListener("click", () => {
+          this.btnUpdate(node);
+        });
+      }
+
+      // Thêm sự kiện copy cho hàng:
+      const copyButtons = document.querySelectorAll(
+        ".table__option .button--copy"
+      );
+      for (const node of copyButtons) {
+        node.addEventListener("click", () => {
+          this.handleCopy(node);
+        });
+      }
+
+      // Hiển thị tổng số bản ghi:
       document.querySelector(
-        "#countEmployee"
-      ).textContent = `Tổng số: ${this.employees.length}`;
+        "#countPage"
+      ).textContent = `Tổng số: ${this.count}`;
+      // Hiển thị các option chuyển trang:
+      for (let i = 1; i <= this.page; i++) {
+        let attribute = "";
+        if (i === parseInt(this.number)) {
+          attribute = "selected";
+        }
+        optionsHtml = `
+          ${optionsHtml}
+          <option class="main__page-number" value="${i}" ${attribute}>${i}</option>
+        `;
+      }
+      document.querySelector("#selectionPage").innerHTML = optionsHtml;
+      // Xử lý disable nút chuyển trang:
+      if (this.number == 1) {
+        document.querySelector("#previousPage").setAttribute("disabled", "");
+      } else {
+        document.querySelector("#previousPage").removeAttribute("disabled");
+      }
+      if (this.number == this.page) {
+        document.querySelector("#nextPage").setAttribute("disabled", "");
+      } else {
+        document.querySelector("#nextPage").removeAttribute("disabled");
+      }
     } catch (error) {
       console.error(error);
     }
+  }
+  /**
+   * Chèn dữ liệu lên form
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  insertToForm(employee) {
+    // Lấy ra các filed và chèn dữ liệu:
+    document.querySelector("#txtEmployeeCode").value = employee.employeeCode;
+    document.querySelector("#txtFullname").value = employee.fullName;
+    document.querySelector("#dateBirthday").value = this.formatFormDate(
+      employee.dateOfBirth
+    );
+    document.querySelectorAll("#radioGender input").forEach((radio) => {
+      if (parseInt(radio.value) === employee.gender) {
+        radio.checked = true;
+        return;
+      }
+    });
+    document
+      .querySelector("#cbPosition")
+      .setAttribute("guid", employee.positionId ?? "");
+    document.querySelector("#txtIdentityNumber").value =
+      employee.identityNumber;
+    document.querySelector("#dateIdentityDate").value = this.formatFormDate(
+      employee.identityDate
+    );
+    document
+      .querySelector("#cbDepartment")
+      .setAttribute("guid", employee.departmentId ?? "");
+    document.querySelector("#txtIdentityPlace").value =
+      employee.identityPlace ?? "";
+    document.querySelector("#txtAddress").value = employee.address ?? "";
+    document.querySelector("#txtPhoneNumber").value = employee.phoneNumber;
+    document.querySelector("#txtLandlineNumber").value =
+      employee.landlineNumber ?? "";
+    document.querySelector("#txtEmail").value = employee.email;
+    document.querySelector("#txtBankAccount").value =
+      employee.bankAccount ?? "";
+    document.querySelector("#txtBankName").value = employee.bankName ?? "";
+    document.querySelector("#txtBranch").value = employee.branch ?? "";
   }
 
   /**
@@ -175,13 +348,15 @@ class EmployeePage {
   btnAddOnClick() {
     try {
       // Lấy ra element của form thêm mới:
-      const form = document.querySelector("#formEmployeeDetail");
+      const form = document.querySelector("#formDetail");
+      // Xác định button cho form:
+      const saveButton = form.querySelector(".button--save");
+      saveButton.textContent = "Thêm mới";
+      saveButton.setAttribute("type", "append");
       // Set hiển thị form:
-      form.parentElement.style.visibility = "visible";
+      this.displayForm();
       // Reset form thêm mới:
       this.resetForm();
-      // focus vào input đầu tiên:
-      form.querySelector("input.input__data").focus();
       //...
     } catch (error) {
       console.error(error);
@@ -189,17 +364,17 @@ class EmployeePage {
   }
 
   /**
-   * Click button "Thêm mới" tại form thêm mới nhân viên để thêm mới nhân viên
+   * Click button lưu thông tin nhân viên
    * Author: Minh Hoàng (14/07/2024)
    */
-  btnSaveOnClick() {
+  async btnSaveOnClick() {
     try {
       // Thực hiện validate dữ liệu:
       let error = this.validateData();
 
       // Hiển thị thông báo nếu dữ liệu không hợp lệ:
       if (error.Errors.length > 0) {
-        const dialogNotice = document.querySelector(".dialog.dialog--notice");
+        const dialogNotice = document.querySelector("#notice");
         // Hiển thị thông báo lên:
         dialogNotice.parentElement.style.visibility = "visible";
         // Thay đổi tiêu đề thông báo:
@@ -220,14 +395,28 @@ class EmployeePage {
         // Lưu input lỗi để thực hiện focus:
         this.inputInvalid = error.InputInvalid;
       } else {
-        // --> Nếu dữ liệu hợp lệ thì gọi api thực hiện thêm mới:
+        // Lấy kiểu form:
+        const saveButton = document.querySelector("#formDetail .button--save");
+        let type = saveButton.getAttribute("type");
+        if (type === "append") {
+          this.handleAppend();
+        } else if (type === "update") {
+          this.handleUpdate();
+        }
       }
       //...
     } catch (error) {
       console.error(error);
     }
   }
-
+  /**
+   * Làm mới dữ liệu trong bảng
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  btnRefresh() {
+    this.number = 1;
+    this.loadData();
+  }
   /**
    * Click hiển thị drowdown và gọi api lấy dữ liệu danh sách
    * Author: Minh Hoàng (14/07/2024)
@@ -237,17 +426,31 @@ class EmployeePage {
       const combobox = element.parentElement.parentElement;
       const dropdown = element.nextElementSibling;
       const input = element.previousElementSibling;
+      let name = combobox.getAttribute("name");
       let drop = combobox.getAttribute("drop");
-      let url = combobox.getAttribute("src");
+      let url = `https://localhost:44357/api/v1/${name}s`;
 
       //Đóng mở dropdown:
       if (drop === "off") {
         combobox.setAttribute("drop", "on");
         if (url !== "") {
           // Lấy dữ liệu lựa chọn cho combobox tương ứng:
-          let items = await this.fetchDataCombobox(url);
+          let res = await this.fetchDataCombobox(url);
+          // Kiểm tra trạng thái request cho combobox:
+          if (!(res.success === true)) {
+            console.error(res.errors);
+            return;
+          }
+          let items = res.data;
           dropdown.innerHTML = items.reduce((acc, cur) => {
-            return `${acc}<li class="combobox__item">${cur.DepartmentName}</li>`;
+            // Đánh dấu giá trị đã chọn trên input:
+            let mark = "";
+            if (cur[`${name}Name`] === input.value) {
+              mark = "combobox__item--selected";
+            }
+            return `${acc}<li class="combobox__item ${mark}" value="${
+              cur[`${name}Id`]
+            }">${cur[`${name}Name`]}</li>`;
           }, "");
           // Chọn combobox:
           this.handleSelectCombobox(input, dropdown);
@@ -260,6 +463,64 @@ class EmployeePage {
       console.error(error);
     }
   }
+
+  /**
+   * Click nút tìm kiếm để tìm kiếm nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnSearchOnClick(node) {
+    // Lấy chuỗi tìm kiếm:
+    let query = node.previousElementSibling.value;
+    // Kiểm tra chuỗi:
+    if (query === "" || query === null || query === undefined) {
+      return;
+    }
+    // Gọi api tìm kiếm dữ liệu nhân viên:
+    let res = await this.fetchData(
+      `https://localhost:44357/api/v1/employees/search?queryString=${query}`
+    );
+    // Kiểm tra trạng thái request thông tin nhân viên:
+    if (!(res.success === true)) {
+      console.error(res.errors);
+      return;
+    }
+    // Thiết lập một số giá trị ban đầu:
+    let employees = res.data;
+    this.number = 1;
+    this.count = employees.length;
+    // Chèn thông tin tìm kiếm được lên bảng:
+    this.insertToTable(employees);
+    //...
+  }
+  /**
+   * Click nút sửa nhân viên để hiển thị và chèn dữ liệu lên form
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnUpdate(node) {
+    // Lấy ra element của form sửa:
+    const form = document.querySelector("#formDetail");
+    // Hiển thị form:
+    this.displayForm();
+    // Xác định button cho form:
+    const saveButton = form.querySelector(".button--save");
+    saveButton.textContent = "Sửa";
+    saveButton.setAttribute("type", "update");
+    // Set disabled field mã:
+    form.querySelector("#txtEmployeeCode").setAttribute("disabled", "");
+    // Lấy id nhân viên tại hàng muốn cập nhật:
+    let id = node.parentElement.parentElement.parentElement.getAttribute("id");
+    // Gọi api lấy thông tin nhân viên hàng:
+    let res = await this.fetchData(
+      `https://localhost:44357/api/v1/employees/${id}`
+    );
+    // Kiểm tra trạng thái request thông tin nhân viên:
+    if (!(res.success === true)) {
+      console.error(res.errors);
+      return;
+    }
+    // Thêm dữ liệu nhân viên của hàng lên form:
+    this.insertToForm(res.data);
+  }
   /**
    * Xử lý sự kiện chọn combobox
    * Author: Minh Hoàng (14/07/2024)
@@ -271,15 +532,213 @@ class EmployeePage {
       node.addEventListener("click", () => {
         // Chèn giá trị vào input:
         input.value = node.textContent;
-        // Đánh dấu giá trị đã chọn trên input:
-        for(const option of nodeItems){
-          // option.classList.remove("combobox__item--selected");
-          if(option.textContent === input.value){
-            option.classList.add("combobox__item--selected");
-          }
-        }
+        input.setAttribute("guid", node.getAttribute("value"));
       });
     }
+  }
+
+  /**
+   * Xử lý "Thêm mới" tại form thêm mới nhân viên để thêm mới nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async handleAppend() {
+    // Tạo tham số đầu vào cho request:
+    const data = this.mockData();
+    // Cấu hình option cho phương thức Post:
+    let option = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    // Gọi api thực hiện thêm mới:
+    let res = await this.fetchData(
+      "https://localhost:44357/api/v1/employees",
+      option
+    );
+    // Hiển thị thông báo thêm:
+    let title = "Thêm nhân viên";
+    let message = "Thêm nhân viên thành công.";
+    this.displayNotice(res, title, message);
+    this.btnRefresh();
+  }
+
+  /**
+   * Xử lý xóa một nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async handleDelete(node) {
+    // Lấy id nhân viên tại hàng muốn xóa:
+    let id = node.parentElement.parentElement.parentElement.getAttribute("id");
+    // Cấu hình option cho phương thức Delete:
+    let option = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    // Gọi api xóa dữ liệu nhân viên:
+    let res = await this.fetchData(
+      `https://localhost:44357/api/v1/employees?id=${id}`,
+      option
+    );
+    // Kiểm tra trạng thái request thông tin nhân viên:
+    if (!(res.success === true)) {
+      console.error(res.errors);
+      return;
+    }
+    // Hiển thị thông báo thêm:
+    let title = "Xóa nhân viên";
+    let message = "Xóa nhân viên thành công.";
+    this.displayNotice(res, title, message);
+    this.loadData();
+  }
+
+  /**
+   * Xử lý sửa một nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async handleUpdate() {
+    // Tạo tham số đầu vào cho request:
+    const data = this.mockData();
+    // Cấu hình option cho phương thức Put:
+    let option = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    // Gọi api cập nhật thông tin nhân viên hàng:
+    let res = await this.fetchData(
+      `https://localhost:44357/api/v1/employees`,
+      option
+    );
+    // Kiểm tra trạng thái request thông tin nhân viên:
+    if (!(res.success === true)) {
+      console.error(res.errors);
+      return;
+    }
+    // Hiển thị thông báo cập nhật:
+    let title = "Cập nhật nhân viên";
+    let message = "Cập nhật nhân viên thành công.";
+    this.displayNotice(res, title, message);
+    this.btnRefresh();
+  }
+
+  /**
+   * Xử lý sao chép thông tin nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async handleCopy(node) {
+    // Lấy id nhân viên tại hàng muốn cập nhật:
+    let id = node.parentElement.parentElement.parentElement.getAttribute("id");
+    // Gọi api lấy thông tin nhân viên hàng:
+    let res = await this.fetchData(
+      `https://localhost:44357/api/v1/employees/${id}`
+    );
+    // Kiểm tra trạng thái request thông tin nhân viên:
+    if (!(res.success === true)) {
+      console.error(res.errors);
+      return;
+    }
+    var employee = res.data;
+    // Tạo chuỗi text:
+    var textToCopy = `
+      Mã nhân viên: ${employee.employeeCode}
+      Tên nhân viên: ${employee.fullName}
+      Giới tính: ${employee.genderName}
+      Ngày sinh: ${this.formatDate(employee.dateOfBirth)}
+      Địa chỉ Email: ${employee.email}
+      Địa chỉ: ${employee.address}
+    `;
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        alert(textToCopy);
+      })
+      .catch((err) => {
+        console.error("Lỗi khi sao chép: ", err);
+      });
+  }
+
+  /**
+   * Hiển thị form
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  displayForm() {
+    // Lấy ra element của form thêm mới:
+    const form = document.querySelector("#formDetail");
+    // Ngăn hành vi load lại của form:
+    form.querySelector("form").addEventListener("submit", function (event) {
+      event.preventDefault();
+    });
+    // Set hiển thị form:
+    form.parentElement.style.visibility = "visible";
+    // focus vào input đầu tiên:
+    form.querySelector("input.input__data:not([disabled])").focus();
+    //...
+  }
+
+  /**
+   * Hiển thị thông báo sau khi gọi api
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  displayNotice(res, title, message) {
+    // Hiển thị thông báo:
+    const dialogNotice = document.querySelector("#notice");
+    dialogNotice.parentElement.style.visibility = "visible";
+    // Thay đổi tiêu đề thông báo:
+    dialogNotice.querySelector(".modal__header-title").innerHTML = title;
+    // Kiểm tra trạng thái request:
+    if (res.success === true) {
+      // Thay đổi chi tiêt thông báo:
+      dialogNotice.querySelector(".modal__body").innerHTML = message;
+      // Lấy ra element của form:
+      const form = document.querySelector("#formDetail");
+      // Set ẩn form:
+      form.parentElement.style.visibility = "hidden";
+    } else {
+      // Duyệt từng nội dung lỗi:
+      if (Array.isArray(res.errors)) {
+        let li = res.errors.reduce((acc, cur) => {
+          return `${acc}
+              <li class="modal__body-description">
+                <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">  
+                ${cur}
+              </li>`;
+        }, "");
+        // Thay đổi chi tiêt thông báo:
+        dialogNotice.querySelector(
+          ".modal__body"
+        ).innerHTML = `<ul class="modal__body-list">${li}</ul>`;
+      } else {
+        dialogNotice.querySelector(".modal__body").innerHTML =
+          "Lỗi không xác định!";
+      }
+      console.error(res.errors);
+    }
+  }
+  /**
+   * Hiển thị thông báo xác nhận trước khi gọi api
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  displayConfirm(message, title, callback) {
+    // Hiển thị thông báo:
+    const dialogNotice = document.querySelector("#confirm");
+    dialogNotice.parentElement.style.visibility = "visible";
+    // Thay đổi tiêu đề thông báo:
+    dialogNotice.querySelector(".modal__header-title").innerHTML = title;
+    // Thay đổi chi tiêt thông báo:
+    dialogNotice.querySelector(".modal__body").innerHTML = message;
+    // Sự kiện đồng ý:
+    dialogNotice
+      .querySelector(".button--approve")
+      .addEventListener("click", () => {
+        callback();
+        dialogNotice.parentElement.style.visibility = "hidden";
+      });
   }
 
   /**
@@ -298,9 +757,7 @@ class EmployeePage {
       result.InputInvalid.push(...validateRequire.InputInvalid);
       result.Errors.push(...validateRequire.Errors);
       // Kiểm tra format email
-      const inputEmail = document.querySelector(
-        "#formEmployeeDetail #txtEmail"
-      );
+      const inputEmail = document.querySelector("#formDetail #txtEmail");
       let email = inputEmail.value;
       if (email !== "") {
         if (!this.validateEmail(email)) {
@@ -318,13 +775,57 @@ class EmployeePage {
   }
 
   /**
+   * Mock dữ liệu từ form nhân viên
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  mockData() {
+    // Lấy dữ liệu từ form thêm nhân viên:
+    let employeeCode = document.querySelector("#txtEmployeeCode").value;
+    let fullname = document.querySelector("#txtFullname").value;
+    let birthday = document.querySelector("#dateBirthday").value;
+    let gender = document.querySelector("#radioGender input[checked]").value;
+    let position = document.querySelector("#cbPosition").getAttribute("guid");
+    let identityNumber = document.querySelector("#txtIdentityNumber").value;
+    let identityDate = document.querySelector("#dateIdentityDate").value;
+    let department = document
+      .querySelector("#cbDepartment")
+      .getAttribute("guid");
+    let identityPlace = document.querySelector("#txtIdentityPlace").value;
+    let address = document.querySelector("#txtAddress").value;
+    let phoneNumber = document.querySelector("#txtPhoneNumber").value;
+    let landlineNumber = document.querySelector("#txtLandlineNumber").value;
+    let email = document.querySelector("#txtEmail").value;
+    let bankAccount = document.querySelector("#txtBankAccount").value;
+    let bankName = document.querySelector("#txtBankName").value;
+    let branch = document.querySelector("#txtBranch").value;
+
+    // Tạo tham số đầu vào cho request:
+    return {
+      departmentId: this.convertEmpty(department),
+      positionId: this.convertEmpty(position),
+      employeeCode: this.convertEmpty(employeeCode),
+      fullName: this.convertEmpty(fullname),
+      dateOfBirth: this.convertDate(birthday),
+      gender: parseInt(gender),
+      identityNumber: this.convertEmpty(identityNumber),
+      identityDate: this.convertDate(identityDate),
+      identityPlace: this.convertEmpty(identityPlace),
+      address: this.convertEmpty(address),
+      phoneNumber: this.convertEmpty(phoneNumber),
+      landlineNumber: this.convertEmpty(landlineNumber),
+      email: this.convertEmpty(email),
+      bankAccount: this.convertEmpty(bankAccount),
+      bankName: this.convertEmpty(bankName),
+      branch: this.convertEmpty(branch),
+    };
+  }
+  /**
    * Reset form điền về mặc định
    * Author: Minh Hoàng (14/07/2024)
    */
   resetForm() {
-    const inputs = document.querySelectorAll(
-      '#formEmployeeDetail input:not([type="radio"])'
-    );
+    const form = document.querySelector("#formDetail");
+    const inputs = form.querySelectorAll('input:not([type="radio"])');
     // Set trống cho các trường text:
     for (const input of inputs) {
       input.value = "";
@@ -336,9 +837,9 @@ class EmployeePage {
       }
     }
     // Set radio mặc định:
-    document.querySelector(
-      '#formEmployeeDetail input[type="radio"]'
-    ).checked = true;
+    form.querySelector('input[type="radio"]').checked = true;
+    // Xóa disable cho field mã:
+    form.querySelector("#txtEmployeeCode").removeAttribute("disabled");
   }
 
   /**
@@ -365,9 +866,7 @@ class EmployeePage {
         Errors: [],
       };
       // Lấy ra tất cả các nút bắt buộc nhập:
-      const inputs = document.querySelectorAll(
-        "#formEmployeeDetail input[required]"
-      );
+      const inputs = document.querySelectorAll("#formDetail input[required]");
       for (const input of inputs) {
         let value = input.value.trim();
         // Kiểm tra tính hợp lệ của field:
@@ -394,17 +893,7 @@ class EmployeePage {
       console.error(error);
     }
   }
-  /**
-   * Dịnh dạng kiểu Date => (dd/MM/yyyy)
-   * Author: Minh Hoàng (14/07/2024)
-   */
-  formatDate(dateString) {
-    let date = new Date(dateString);
-    let day = date.getDay().toString().padStart(2, "0");
-    let month = (date.getMonth() + 1).toString().padStart(2, "0");
-    let year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
+
   /**
    * Hàm ẩn hiện loading
    * Author: Minh Hoàng (14/07/2024)
@@ -426,11 +915,11 @@ class EmployeePage {
    * Hàm thực hiện fetch dữ liệu
    * Author: Minh Hoàng (14/07/2024)
    */
-  async fetchData(url) {
+  async fetchData(url, option) {
     // Hiện loading trước khi gọi api:
     this.spinner(true);
     try {
-      let response = await fetch(url);
+      let response = await fetch(url, option);
       return await response.json();
     } catch (error) {
       console.error(error);
@@ -439,7 +928,6 @@ class EmployeePage {
       this.spinner(false);
     }
   }
-
   /**
    * Hàm thực hiện fetch dữ liệu cho combobox
    * Author: Minh Hoàng (14/07/2024)
@@ -451,5 +939,55 @@ class EmployeePage {
     } catch (error) {
       console.error(error);
     }
+  }
+  /**
+   * Dịnh dạng kiểu Date => (dd/MM/yyyy)
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  formatDate(value) {
+    if (value === null) {
+      return "";
+    }
+    let date = new Date(value);
+    let day = date.getDate().toString().padStart(2, "0");
+    let month = (date.getMonth() + 1).toString().padStart(2, "0");
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  /**
+   * Dịnh dạng kiểu Date => (yyyy-MM-dd)
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  formatFormDate(value) {
+    if (value === null) {
+      return "";
+    }
+    let date = new Date(value);
+    let day = date.getDate().toString().padStart(2, "0");
+    let month = (date.getMonth() + 1).toString().padStart(2, "0");
+    let year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  }
+  /**
+   * Truyển đổi giá trị từ input date thành kiểu Date
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  convertDate(value) {
+    const date = new Date(value);
+    // Kiểm tra xem giá trị của date có hợp lệ hay không
+    if (isNaN(date.getTime())) {
+      return null; // Nếu không hợp lệ, trả về null
+    }
+    return date; // Nếu hợp lệ, trả về đối tượng Date
+  }
+  /**
+   * Chuyển giá trị trống nếu có thành null
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  convertEmpty(value) {
+    if (value === "" || value === null || value === undefined) {
+      return null;
+    }
+    return value;
   }
 }

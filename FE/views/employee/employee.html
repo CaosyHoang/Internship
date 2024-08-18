@@ -14,7 +14,7 @@
     <div class="container">
         <header class="header">
             <h2 class="header__brand">
-                <i class="fas fa-th"></i>
+                <img src="./assets/img/toggle.png" class="header__toggle" alt="Toggle">
                 <img src="./assets/cukcuk-logo.png" class="header__logo" alt="cukcuk-logo">
             </h2>
             <nav class="header__nav">
@@ -52,7 +52,8 @@
             </nav>
             <div class="aside__collapse">
                 <img src="./assets/icon/btn-prev-page.svg" class="aside__icon aside__icon--collapse" alt="Thu gọn">
-                <img src="./assets/icon/btn-next-page.svg" class="aside__icon aside__icon--extend" alt="Mở rộng">
+                <img src="./assets/icon/btn-next-page.svg" class="aside__icon aside__icon--extend" alt="Mở rộng"
+                    title="Mở rộng">
                 <p class="aside__text">Thu gọn</p>
             </div>
         </aside>
@@ -67,18 +68,24 @@
             </div>
             <section class="main__section">
                 <article class="main__header-article">
-                    <form action="" class="search-box" method="get">
-                        <input type="text" class="search-box__data" placeholder="Search...">
-                        <button type="submit" class="search-box__button">
+                    <form class="search-box" method="get">
+                        <input type="text" class="search-box__data" placeholder="Tìm kiếm...">
+                        <button id="btnSearch" type="button" class="search-box__button">
                             <img src="./assets/icon/search.png" class="search-box__icon" alt="Tìm kiếm">
                         </button>
                     </form>
                     <div class="main__header-article-feature">
-                        <button class="button button--symbol main__header-button">
-                            <img src="./assets/icon/export-excel-50.png" class="button-icon" alt="Xuất Excel">
+                        <button class="button button--symbol main__header-button" title="Xuất Excel">
+                            <img class="button-icon" src="./assets/icon/export-excel-50.png" alt="Xuất Excel">
                         </button>
-                        <button class="button button--symbol main__header-button">
-                            <img src="./assets/icon/refresh.png" class="button-icon" alt="Làm mới">
+                        <button class="button button--symbol main__header-button" title="Nhập Excel">
+                            <img class="button-icon" src="./assets/icon/import.png" alt="Nhập Excel">
+                        </button>
+                        <button class="button button--symbol main__header-button" title="Xóa">
+                            <img class="button-icon" src="./assets/icon/delete-48.png" alt="Xóa">
+                        </button>
+                        <button id="btnRefresh" class="button button--symbol main__header-button" title="Tải lại">
+                            <img class="button-icon" src="./assets/icon/refresh.png" alt="Tải lại">
                         </button>
                     </div>
                 </article>
@@ -99,21 +106,18 @@
                     </table>
                 </div>
                 <div class="main__page">
-                    <div id="countEmployee" class="main__record-count"></div>
+                    <div id="countPage" class="main__record-count"></div>
                     <div class="main__page-control">
                         <p>Số bản ghi/Trang</p>
-                        <select class="main__page-selection">
-                            <option class="main__page-number" value="">1</option>
-                            <option class="main__page-number" value="">2</option>
-                            <option class="main__page-number" value="">3</option>
-                        </select>
+                        <select id="selectionPage" class="main__page-selection"></select>
                         <div class="main__page-button">
-                            <button class="button button--symbol">
-                                <img src="./assets/icon/btn-prev-page.svg" class="button-icon" alt="Lùi trang">
+                            <button id="previousPage" class="button button--symbol">
+                                <img src="./assets/icon/btn-prev-page.svg" class="button-icon" alt="Lùi trang"
+                                    title="Previous">
                             </button>
-                            <button class="button button--symbol">
-                                <img src="./assets/icon/btn-next-page.svg" class="button-icon" alt="Lùi trang">
-                            </button>
+                            <button id="nextPage" class="button button--symbol">
+                                <img src="./assets/icon/btn-next-page.svg" class="button-icon" alt="Chuyển trang"
+                                    title="Next">
                         </div>
                     </div>
                 </div>
@@ -123,14 +127,14 @@
 
     <div class="overlay">
         <!-- FORM -->
-        <div id="formEmployeeDetail" class="modal form">
+        <div id="formDetail" class="modal form">
             <div class="modal__header">
                 <h2 class="modal__header-title">Thông tin nhân viên</h2>
                 <button class="button--symbol modal__btn--close">
                     <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
                 </button>
             </div>
-            <form action="" class="modal__body" method="get">
+            <form class="modal__body">
                 <!-- MÃ NHÂN VIÊN -->
                 <div class="modal__body-data input m3">
                     <label class="input__label">Mã nhân viên <red>*</red></label>
@@ -154,25 +158,25 @@
                     <label class="input__label">Giới tính</label>
                     <div id="radioGender" class="input__radio-box">
                         <div class="input__radio-option">
-                            <input type="radio" class="input__radio" name="gender" value="" checked>
+                            <input type="radio" class="input__radio" name="gender" value="1" checked>
                             <label class="input__radio-label">Nam</label>
                         </div>
                         <div class="input__radio-option">
-                            <input type="radio" class="input__radio" name="gender" value="">
+                            <input type="radio" class="input__radio" name="gender" value="2">
                             <label class="input__radio-label">Nữ</label>
                         </div>
                         <div class="input__radio-option">
-                            <input type="radio" class="input__radio" name="gender" value="">
+                            <input type="radio" class="input__radio" name="gender" value="3">
                             <label class="input__radio-label">Khác</label>
                         </div>
                     </div>
                     <div class="input__message-error"></div>
                 </div>
                 <!-- VỊ TRÍ -->
-                <div class="modal__body-data combobox m6" src="https://cukcuk.manhnv.net/api/v1/Departments" drop="off">
+                <div class="modal__body-data combobox m6" name="position" drop="off">
                     <label class="combobox__label">Vị trí</label>
                     <div class="combobox__control">
-                        <input id="cbPosition" type="text" class="combobox__data">
+                        <input id="cbPosition" type="text" guid="" class="combobox__data" disabled>
                         <button type="button" class="combobox__button">
                             <i class="fas fa-angle-down"></i>
                         </button>
@@ -185,20 +189,20 @@
                 <!-- SỐ CHỨNG MINH THƯ NHÂN DÂN -->
                 <div class="modal__body-data input m4">
                     <label class="input__label">Số CMTND <red>*</red></label>
-                    <input id="txtCMTND" type="text" class="input__data" required>
+                    <input id="txtIdentityNumber" type="text" class="input__data" required>
                     <div class="input__message-error"></div>
                 </div>
                 <!-- NGÀY CẤP -->
                 <div class="modal__body-data input m2">
                     <label class="input__label">Ngày cấp</label>
-                    <input id="dateReceive" type="date" class="input__data">
+                    <input id="dateIdentityDate" type="date" class="input__data">
                     <div class="input__message-error"></div>
                 </div>
                 <!-- PHÒNG BAN -->
-                <div class="modal__body-data combobox m6" src="https://cukcuk.manhnv.net/api/v1/Departments" drop="off">
+                <div class="modal__body-data combobox m6" name="department" drop="off">
                     <label class="combobox__label">Phòng ban</label>
                     <div class="combobox__control">
-                        <input id="cbDepartment" type="text" class="combobox__data">
+                        <input id="cbDepartment" type="text" guid="" class="combobox__data" disabled>
                         <button type="button" class="combobox__button">
                             <i class="fas fa-angle-down"></i>
                         </button>
@@ -211,7 +215,7 @@
                 <!-- NƠI CẤP -->
                 <div class="modal__body-data input m6">
                     <label class="input__label">Nơi cấp</label>
-                    <input id="txtReceivePlace" type="text" class="input__data">
+                    <input id="txtIdentityPlace" type="text" class="input__data">
                     <div class="input__message-error"></div>
                 </div>
                 <!-- ĐỊA CHỈ -->
@@ -229,7 +233,7 @@
                 <!-- ĐIỆN THOẠI CỐ ĐỊNH -->
                 <div class="modal__body-data input m4">
                     <label class="input__label">ĐT Cố định</label>
-                    <input id="txtPhoneDesktop" type="text" class="input__data">
+                    <input id="txtLandlineNumber" type="text" class="input__data">
                     <div class="input__message-error"></div>
                 </div>
                 <!-- EMAIL -->
@@ -259,15 +263,15 @@
             </form>
 
             <div class="modal__footer">
-                <button class="button button--secondary">Hủy</button>
-                <button id="btnSave" class="button button--primary">Thêm mới</button>
+                <button class="button button--secondary button--cancel">Hủy</button>
+                <button class="button button--primary button--save" type="append">Thêm mới</button>
             </div>
         </div>
     </div>
 
     <div class="overlay">
         <!-- DIAGLOG -->
-        <div class="modal dialog dialog--notice">
+        <div id="notice" class="modal dialog dialog--notice">
             <div class="modal__header">
                 <h2 class="modal__header-title"></h2>
                 <button class="button--symbol modal__btn--close">
@@ -277,6 +281,23 @@
             <div class="modal__body"></div>
             <div class="modal__footer">
                 <button class="button dialog__button--confirm button--primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <!-- CONFIRM -->
+        <div id="confirm" class="modal dialog dialog--notice">
+            <div class="modal__header">
+                <h2 class="modal__header-title"></h2>
+                <button class="button--symbol modal__btn--close">
+                    <img src="./assets/icon/close-48.png" class="button-icon" alt="Close">
+                </button>
+            </div>
+            <div class="modal__body"></div>
+            <div class="modal__footer">
+                <button class="button dialog__button--confirm button--secondary button--cancel">Hủy bỏ</button>
+                <button class="button dialog__button--confirm button--primary button--approve">Đồng ý</button>
             </div>
         </div>
     </div>

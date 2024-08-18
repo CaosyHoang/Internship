@@ -49,8 +49,8 @@ namespace Infrastructure.Repositories
                     foreach (var employee in employees)
                     {
                         // Lấy giá trị của prop:
-                        var value = employeeProp.GetValue(employee)?.ToString();
-                        if (value != null && value.Contains(query))
+                        var value = employeeProp.GetValue(employee)?.ToString()?.ToLower();
+                        if (value != null && value.Contains(query.ToLower()))
                         {
                             res.Add(employee);
                         }

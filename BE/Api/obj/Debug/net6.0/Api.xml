@@ -8,7 +8,7 @@
             <summary>
             Lấy toàn bộ phòng ban
             </summary>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
         <member name="M:Api.Controllers.EmployeesController.Create(Core.DTOs.EmployeeDto)">
@@ -16,14 +16,21 @@
             Thêm mới một nhân viên
             </summary>
             <param name="model">Nhân viên (EmployeeDto)</param>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
+        </member>
+        <member name="M:Api.Controllers.EmployeesController.Get(System.Guid)">
+            <summary>
+            Lấy thông tin nhân viên theo Id
+            </summary>
+            <param name="id">Id nhân viên</param>
+            <returns>Chi tiết request</returns>
         </member>
         <member name="M:Api.Controllers.EmployeesController.GetCount">
             <summary>
             Lấy ra số lượng nhân viên
             </summary>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
         <member name="M:Api.Controllers.EmployeesController.GetPage(System.Int32,System.Int32)">
@@ -32,7 +39,7 @@
             </summary>
             <param name="limit">Số nhân viên tối đa</param>
             <param name="number">Trang số</param>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
         <member name="M:Api.Controllers.EmployeesController.Search(System.String)">
@@ -40,14 +47,22 @@
             Tìm kiếm nhân viên
             </summary>
             <param name="queryString">Chuỗi được so sánh với các field search đã thiết lập</param>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
+            CreatedBy: Minh Hoàng (08/05/2024)
+        </member>
+        <member name="M:Api.Controllers.EmployeesController.Delete(System.Guid)">
+            <summary>
+            Xóa một nhân viên
+            </summary>
+            <param name="id">Id nhân viên</param>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
         <member name="M:Api.Controllers.PositionsController.GetAll">
             <summary>
             Lấy toàn bộ vị trí/ chức vụ
             </summary>
-            <returns>Chi tiết kết quả</returns>
+            <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
     </members>

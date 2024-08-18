@@ -1,0 +1,57 @@
+2024-08-17 14:05:26.9187 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:05:32.2674 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:05:48.8564 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:06:12.8604 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:06:33.7607 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:08:21.8870 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:08:55.7724 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:09:30.6251 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:10:48.5812 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:11:21.6683 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:12:43.9018 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:20:46.9933 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:20:52.9249 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 14:21:09.0009 ERROR Đã xảy ra lỗi: Số trang không hợp lệ.
+2024-08-17 15:35:23.1383 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 15:35:48.8303 ERROR Đã xảy ra lỗi: Duplicate entry 'PhilRichey8@example.com' for key 'Employee.UK_Employee_Email'
+2024-08-17 15:36:06.7815 ERROR Đã xảy ra lỗi: Duplicate entry '004531941' for key 'Employee.UK_Employee_IdentityNumber'
+2024-08-17 21:52:38.1672 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:54:48.7138 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:55:01.4472 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:56:33.8748 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:56:50.5806 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:57:09.1050 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:57:17.3925 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 21:59:18.2637 ERROR Đã xảy ra lỗi: Internal Server Error.
+2024-08-17 22:07:05.3451 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:07:50.0007 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:10:32.1426 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:11:01.8305 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:12:19.0383 ERROR Đã xảy ra lỗi: Internal Server Error.
+2024-08-17 22:13:08.5921 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:13:10.3903 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:13:35.5125 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:15:37.4216 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:18:25.4447 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-17 22:19:29.8362 ERROR Đã xảy ra lỗi: Duplicate entry '3123213213' for key 'Employee.UK_Employee_IdentityNumber'
+2024-08-17 22:20:31.9106 ERROR Đã xảy ra lỗi: Duplicate entry '3123213213' for key 'Employee.UK_Employee_IdentityNumber'
+2024-08-17 22:30:24.1749 ERROR Đã xảy ra lỗi: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Core.Entities.Employee, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Core.DTOs.EmployeeDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2024-08-17 22:33:38.2572 ERROR Đã xảy ra lỗi: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Core.Entities.Employee, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Core.DTOs.EmployeeDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2024-08-17 22:33:54.9794 ERROR Đã xảy ra lỗi: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Core.Entities.Employee, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Core.DTOs.EmployeeDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2024-08-17 22:34:28.6442 ERROR Đã xảy ra lỗi: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Core.Entities.Employee, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Core.DTOs.EmployeeDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]

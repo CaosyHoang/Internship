@@ -61,6 +61,24 @@ namespace Core.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mã nhân viên không tồn tại trong hệ thống..
+        /// </summary>
+        public static string Code_Not_Existing_Exception {
+            get {
+                return ResourceManager.GetString("Code_Not_Existing_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Định dạng Date không hợp lệ, vui lòng nhập đúng format (dd/MM/yyyy)..
+        /// </summary>
+        public static string Date_Error_Exception {
+            get {
+                return ResourceManager.GetString("Date_Error_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Có lỗi trong quá trình xóa..
         /// </summary>
         public static string Delete_Error_Exception {
@@ -79,11 +97,47 @@ namespace Core.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Định dạng tệp tin Excel không hợp lệ..
+        /// </summary>
+        public static string Excel_File_Invalid_Exception {
+            get {
+                return ResourceManager.GetString("Excel_File_Invalid_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Có lỗi trong quá trình thêm..
+        /// </summary>
+        public static string Insert_Error_Exception {
+            get {
+                return ResourceManager.GetString("Insert_Error_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kích thước tệp vượt quá kích thước tối đa cho phép (10MB)..
+        /// </summary>
+        public static string Limit_File_Exception {
+            get {
+                return ResourceManager.GetString("Limit_File_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Số bản ghi tối đa không hợp lệ..
         /// </summary>
         public static string LimitPage_Exception {
             get {
                 return ResourceManager.GetString("LimitPage_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có file nào được tải lên..
+        /// </summary>
+        public static string Null_File_Exception {
+            get {
+                return ResourceManager.GetString("Null_File_Exception", resourceCulture);
             }
         }
         

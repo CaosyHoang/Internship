@@ -1,0 +1,26 @@
+2024-08-18 10:42:47.0867 ERROR Đã xảy ra lỗi: Internal Server Error.
+2024-08-18 10:43:47.4021 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> PositionDto
+System.Collections.Generic.List`1[[Core.Entities.Position, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Core.DTOs.PositionDto
+2024-08-18 10:43:57.6998 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> PositionDto
+System.Collections.Generic.List`1[[Core.Entities.Position, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Core.DTOs.PositionDto
+2024-08-18 10:44:02.0453 ERROR Đã xảy ra lỗi: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> DepartmentDto
+System.Collections.Generic.List`1[[Core.Entities.Department, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Core.DTOs.DepartmentDto
+2024-08-18 11:27:28.2882 ERROR Đã xảy ra lỗi: Internal Server Error.
+2024-08-18 11:35:11.3828 ERROR Đã xảy ra lỗi: Internal Server Error.
+2024-08-18 16:28:41.9254 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-18 16:30:15.3042 ERROR Đã xảy ra lỗi: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''EmployeeId = 00000000-0000-0000-0000-000000000000, DepartmentId = 5fab4ff7-1b8e' at line 1
+2024-08-18 16:38:36.7893 ERROR Đã xảy ra lỗi: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''DepartmentId = 5fab4ff7-1b8e-64d0-1880-de64d090a2c2, PositionId = 4e272fc4-7875' at line 1
+2024-08-18 16:51:32.3843 ERROR Đã xảy ra lỗi: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''DepartmentId = 5fab4ff7-1b8e-64d0-1880-de64d090a2c2, PositionId = 4e272fc4-7875' at line 1
+2024-08-18 16:59:14.3366 ERROR Đã xảy ra lỗi: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''DepartmentId = 5fab4ff7-1b8e-64d0-1880-de64d090a2c2, PositionId = 4e272fc4-7875' at line 1
+2024-08-18 17:04:39.9033 ERROR Đã xảy ra lỗi: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''DepartmentId = @DepartmentId, PositionId = @PositionId, FullName = @FullName, D' at line 1
+2024-08-18 17:13:18.6698 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-18 17:17:17.0440 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.

@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Core.Exceptions;
+using Dapper;
 using Infrastructure.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
@@ -84,16 +85,26 @@ namespace Infrastructure.Data
             var className = typeof(T).Name;
             // Lấy ra các props của entity:
             var props = entity!.GetType().GetProperties();
+            // Lấy ra Id của entity:
+            var id = entity!.GetType().GetProperty($"{className}Id");
+            // Lấy ra code của entity:
+            var code = entity!.GetType().GetProperty($"{className}Code");
+            // Build câu lệnh Update:
+            var parameters = new DynamicParameters();
+            parameters.Add("@Code", code!.GetValue(entity));
             // Duyệt từng prop:
             foreach (var prop in props)
             {
-                modifies.Add($"{prop.Name} = {prop.GetValue(entity)}");
+                var value = prop.GetValue(entity);
+                var name = prop.Name;
+                if (prop == code || prop == id || value == null)
+                {
+                    continue;
+                }
+                modifies.Add($"{name} = @{name}");
+                parameters.Add($"@{name}", value);
             }
-            // Build câu lệnh Update:
-            var sql = $"UPDATE {className} SET @modifies WHERE {className}Id = @id";
-            var parameters = new DynamicParameters();
-            parameters.Add("@modifies", String.Join(", ", modifies));
-            parameters.Add("@id", props[0].GetValue(entity));
+            var sql = $"UPDATE {className} SET {String.Join(", ", modifies)} WHERE {className}Code = @Code";
             // Thực thi:
             var res = await Connection.ExecuteAsync(sql, parameters, transaction: Transaction);
             return res;

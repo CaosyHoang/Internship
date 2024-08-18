@@ -1,4 +1,7 @@
-﻿namespace Core.Entities
+﻿using Core.Const;
+using System.ComponentModel.DataAnnotations;
+
+namespace Core.Entities
 {
     /// <summary>
     /// Danh sách chức vụ
