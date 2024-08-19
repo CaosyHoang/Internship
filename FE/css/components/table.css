@@ -23,6 +23,10 @@
     cursor: default;
 }
 
+.table__record--selected{
+    background: #F6F6F6;
+}
+
 .table__record>.table__cell:nth-child(5) {
     text-align: center;
 }

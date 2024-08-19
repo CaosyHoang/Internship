@@ -144,22 +144,33 @@ class EmployeePage {
       // Xuất excel:
       document
         .querySelector("#btnExport")
-        .addEventListener("click", this.btnExportOnClick);
+        .addEventListener("click", this.btnExportOnClick.bind(this));
 
-      // Copy thông tin nhân viên:
+      // Nhập excel:
+      // 1. Mở hộp chọn file:
       document
-        .querySelector(".btn-duplicate")
-        .addEventListener("click", this.btnDuplicateOnClick);
-
-      // Xóa nhân viên:
+        .querySelector("#btnImport")
+        .addEventListener("click", function () {
+          this.querySelector("#fileInput").click();
+        });
+      // 1. Import dữ liệu:
       document
-        .querySelector(".btn-remove")
-        .addEventListener("click", this.btnRemoveOnClick);
+        .querySelector("#fileInput")
+        .addEventListener("change", (event) => {
+          this.btnImportOnClick(event.target.files[0]);
+        });
 
       // Xóa nhiều nhân viên:
       document
-        .querySelector(".btn-remove-multi")
-        .addEventListener("click", this.btnRemoveMultiOnClick);
+        .querySelector("#btnDeleteMulti")
+        .addEventListener("click", () => {
+          let title = "Xác nhận xóa nhân viên";
+          let message = "Bạn có chắc muốn xóa không?";
+          let callback = () => {
+            this.btnRemoveMultiOnClick();
+          };
+          this.displayConfirm(message, title, callback);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -171,6 +182,7 @@ class EmployeePage {
    */
   async loadData() {
     try {
+
       // Gọi api lấy dữ liệu nhân viên:
       let resEmployee = await this.fetchData(
         `https://localhost:44357/api/v1/employees/page?limit=${this.limit}&number=${this.number}`
@@ -206,7 +218,8 @@ class EmployeePage {
       this.page = Math.ceil(this.count / this.limit);
       let optionsHtml = "";
       // Hiển thị danh sách nhân viên lên bảng:
-      document.querySelector("#dataTable tbody").innerHTML = employees.reduce(
+      const table = document.querySelector("#dataTable");
+      table.querySelector("tbody").innerHTML = employees.reduce(
         (acc, cur, ind) => {
           return `${acc}
             <tr class="table__record" id="${cur.employeeId}">
@@ -266,6 +279,14 @@ class EmployeePage {
       for (const node of copyButtons) {
         node.addEventListener("click", () => {
           this.handleCopy(node);
+        });
+      }
+
+      // Thêm sự kiện chọn chọn nhiều dòng bằng doubleclick:
+      const row = table.querySelectorAll(".table__record");
+      for (const node of row) {
+        node.addEventListener("dblclick", function () {
+          this.classList.toggle("table__record--selected");
         });
       }
 
@@ -374,24 +395,8 @@ class EmployeePage {
 
       // Hiển thị thông báo nếu dữ liệu không hợp lệ:
       if (error.Errors.length > 0) {
-        const dialogNotice = document.querySelector("#notice");
-        // Hiển thị thông báo lên:
-        dialogNotice.parentElement.style.visibility = "visible";
-        // Thay đổi tiêu đề thông báo:
-        dialogNotice.querySelector(".modal__header-title").innerHTML =
-          "Dữ liệu không hợp lệ";
-        // Duyệt từng nội dung thông báo:
-        let li = error.Errors.reduce((acc, cur) => {
-          return `${acc}
-            <li class="modal__body-description">
-              <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">  
-              ${cur}
-            </li>`;
-        }, "");
-        // Thay đổi chi tiêt thông báo:
-        dialogNotice.querySelector(
-          ".modal__body"
-        ).innerHTML = `<ul class="modal__body-list">${li}</ul>`;
+        // Hiển thị thông báo lỗi:
+        this.displayError(error.Errors);
         // Lưu input lỗi để thực hiện focus:
         this.inputInvalid = error.InputInvalid;
       } else {
@@ -470,7 +475,7 @@ class EmployeePage {
    */
   async btnSearchOnClick(node) {
     // Lấy chuỗi tìm kiếm:
-    let query = node.previousElementSibling.value;
+    let query = node.previousElementSibling?.value;
     // Kiểm tra chuỗi:
     if (query === "" || query === null || query === undefined) {
       return;
@@ -479,11 +484,6 @@ class EmployeePage {
     let res = await this.fetchData(
       `https://localhost:44357/api/v1/employees/search?queryString=${query}`
     );
-    // Kiểm tra trạng thái request thông tin nhân viên:
-    if (!(res.success === true)) {
-      console.error(res.errors);
-      return;
-    }
     // Thiết lập một số giá trị ban đầu:
     let employees = res.data;
     this.number = 1;
@@ -521,6 +521,122 @@ class EmployeePage {
     // Thêm dữ liệu nhân viên của hàng lên form:
     this.insertToForm(res.data);
   }
+
+  /**
+   * Xuất danh sách nhân viên thành file excel
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnExportOnClick() {
+    // Gọi API để lấy danh sách mã hóa Base64:
+    let res = await this.fetchData(
+      "https://localhost:44357/api/v1/employees/export"
+    );
+
+    const base64String = res.data.data; // Trích xuất chuỗi Base64 từ JSON
+    const byteCharacters = atob(base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    // Mở hộp thoại lưu tệp để người dùng chọn thư mục và tên tệp
+    const options = {
+      suggestedName: res.data.fileName, // Tên tệp đề xuất
+      types: [
+        {
+          description: "Excel Files",
+          accept: {
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+              [".xlsx"],
+          },
+        },
+      ],
+    };
+
+    const handle = await window.showSaveFilePicker(options);
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+
+    // Hiển thị thông báo export:
+    let title = "Xuất thông tin nhân viên";
+    let message = "Xuất thành công vui lòng kiểm tra file trong thư mục.";
+    let callback = () => this.btnRefresh();
+    this.displayNotice(res, title, message, callback);
+  }
+
+  /**
+   * Nhập danh sách nhân viên bằng file excel
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnImportOnClick(file) {
+    // Tạo tham số đầu vào cho request:
+    const formData = new FormData();
+    formData.append("file", file);
+    // Cấu hình option cho phương thức Post:
+    let option = {
+      method: "POST",
+      body: formData,
+    };
+    // Gọi api thực hiện thêm mới:
+    let res = await this.fetchData(
+      "https://localhost:44357/api/v1/employees/import",
+      option
+    );
+    // Hiển thị thông báo thêm:
+    let title = "Nhập thông tin nhân viên";
+    let message = `Nhập thành công ${res.data} nhân viên.`;
+    let callback = () => this.btnRefresh();
+    this.displayNotice(res, title, message, callback);
+  }
+  /**
+   * Xóa các bản ghi được chọn trên bảng
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async btnRemoveMultiOnClick() {
+    // Lấy ra nhưng row được chọn:
+    const row = document.querySelectorAll(
+      "#dataTable .table__record.table__record--selected"
+    );
+    // Duyệt lấy danh sách id của nhân viên trên row:
+    let ids = [];
+    for (const node of row) {
+      // Lấy id:
+      let id = node.getAttribute("id");
+      ids.push(id);
+    }
+    // Thông báo khi chưa có row nào được chọn:
+    if (ids.length <= 0) {
+      // Hiển thị thông báo chưa chọn:
+      let title = "Xóa thông tin nhân viên";
+      let message = `Thành công xóa ${res.data} nhân viên.`;
+      let callback = () => this.btnRefresh();
+      this.displayNotice(res, title, message, callback);
+    }
+    // Cấu hình option cho phương thức Delete:
+    let option = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ids),
+    };
+    // Gọi api thực hiện xóa nhiều:
+    let res = await this.fetchData(
+      "https://localhost:44357/api/v1/employees/multi",
+      option
+    );
+    // Hiển thị thông báo thêm:
+    let title = "Xóa thông tin nhân viên";
+    let message = `Thành công xóa ${res.data} nhân viên.`;
+    let callback = () => this.btnRefresh();
+    this.displayNotice(res, title, message, callback);
+  }
+
   /**
    * Xử lý sự kiện chọn combobox
    * Author: Minh Hoàng (14/07/2024)
@@ -560,8 +676,8 @@ class EmployeePage {
     // Hiển thị thông báo thêm:
     let title = "Thêm nhân viên";
     let message = "Thêm nhân viên thành công.";
-    this.displayNotice(res, title, message);
-    this.btnRefresh();
+    let callback = () => this.btnRefresh();
+    this.displayNotice(res, title, message, callback);
   }
 
   /**
@@ -583,16 +699,18 @@ class EmployeePage {
       `https://localhost:44357/api/v1/employees?id=${id}`,
       option
     );
-    // Kiểm tra trạng thái request thông tin nhân viên:
+    // Kiểm tra trạng thái request xóa nhân viên:
     if (!(res.success === true)) {
+      // Hiển thị thông báo lỗi:
+      this.displayError(res.errors);
       console.error(res.errors);
       return;
     }
     // Hiển thị thông báo thêm:
     let title = "Xóa nhân viên";
     let message = "Xóa nhân viên thành công.";
-    this.displayNotice(res, title, message);
-    this.loadData();
+    let callback = () => this.loadData();
+    this.displayNotice(res, title, message, callback);
   }
 
   /**
@@ -615,16 +733,11 @@ class EmployeePage {
       `https://localhost:44357/api/v1/employees`,
       option
     );
-    // Kiểm tra trạng thái request thông tin nhân viên:
-    if (!(res.success === true)) {
-      console.error(res.errors);
-      return;
-    }
     // Hiển thị thông báo cập nhật:
     let title = "Cập nhật nhân viên";
     let message = "Cập nhật nhân viên thành công.";
-    this.displayNotice(res, title, message);
-    this.btnRefresh();
+    let callback = () => this.btnRefresh();
+    this.displayNotice(res, title, message, callback);
   }
 
   /**
@@ -670,10 +783,6 @@ class EmployeePage {
   displayForm() {
     // Lấy ra element của form thêm mới:
     const form = document.querySelector("#formDetail");
-    // Ngăn hành vi load lại của form:
-    form.querySelector("form").addEventListener("submit", function (event) {
-      event.preventDefault();
-    });
     // Set hiển thị form:
     form.parentElement.style.visibility = "visible";
     // focus vào input đầu tiên:
@@ -685,7 +794,7 @@ class EmployeePage {
    * Hiển thị thông báo sau khi gọi api
    * Author: Minh Hoàng (14/07/2024)
    */
-  displayNotice(res, title, message) {
+  displayNotice(res, title, message, callback) {
     // Hiển thị thông báo:
     const dialogNotice = document.querySelector("#notice");
     dialogNotice.parentElement.style.visibility = "visible";
@@ -699,6 +808,8 @@ class EmployeePage {
       const form = document.querySelector("#formDetail");
       // Set ẩn form:
       form.parentElement.style.visibility = "hidden";
+      // Chạy hành động thêm:
+      callback();
     } else {
       // Duyệt từng nội dung lỗi:
       if (Array.isArray(res.errors)) {
@@ -739,6 +850,30 @@ class EmployeePage {
         callback();
         dialogNotice.parentElement.style.visibility = "hidden";
       });
+  }
+  /**
+   * Hiển thị thông báo kèm các lỗi được chuyền vào
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  displayError(errors) {
+    // Hiển thị thông báo lên:
+    const dialogNotice = document.querySelector("#notice");
+    dialogNotice.parentElement.style.visibility = "visible";
+    // Thay đổi tiêu đề thông báo:
+    dialogNotice.querySelector(".modal__header-title").innerHTML =
+      "Dữ liệu không hợp lệ";
+    // Duyệt từng nội dung thông báo:
+    let li = errors.reduce((acc, cur) => {
+      return `${acc}
+        <li class="modal__body-description">
+          <img src="./assets/icon/error-48.png" class="modal__body-icon" alt="Error">  
+          ${cur}
+        </li>`;
+    }, "");
+    // Thay đổi chi tiêt thông báo:
+    dialogNotice.querySelector(
+      ".modal__body"
+    ).innerHTML = `<ul class="modal__body-list">${li}</ul>`;
   }
 
   /**

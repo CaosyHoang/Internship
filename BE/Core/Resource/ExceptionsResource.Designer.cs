@@ -158,5 +158,14 @@ namespace Core.Resource {
                 return ResourceManager.GetString("Server_Exception", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Có lỗi trong quá trình cập nhật..
+        /// </summary>
+        public static string Update_Error_Exception {
+            get {
+                return ResourceManager.GetString("Update_Error_Exception", resourceCulture);
+            }
+        }
     }
 }

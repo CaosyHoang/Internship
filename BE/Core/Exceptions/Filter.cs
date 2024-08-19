@@ -17,7 +17,7 @@ namespace Core.Exceptions
                 throw new ValidateException(Resource.ExceptionsResource.Null_File_Exception);
             }
             // Kiểm tra loại tệp (phần mở rộng và MIME type):
-            var fileExtension = Path.GetExtension(file.Name).ToLower();
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
             if (fileExtension != ".xlsx" && fileExtension != ".xls")
             {
                 throw new ValidateException(Resource.ExceptionsResource.Excel_File_Invalid_Exception);

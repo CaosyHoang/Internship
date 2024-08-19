@@ -50,7 +50,7 @@ namespace Core.Services
             var res = await _repository.InsertAsync(entity);
             if (res == false)
             {
-                throw new ValidateException(Resource.ExceptionsResource.Server_Exception);
+                throw new ValidateException(Resource.ExceptionsResource.Insert_Error_Exception);
             }
             return new ResultDetails
             {
@@ -111,7 +111,7 @@ namespace Core.Services
             var res = await _repository.DeleteAsync(id);
             if (res == false)
             {
-                throw new ValidateException(Resource.ExceptionsResource.Server_Exception);
+                throw new ValidateException(Resource.ExceptionsResource.Delete_Error_Exception);
             }
             return new ResultDetails
             {
@@ -138,12 +138,27 @@ namespace Core.Services
             var res = await _repository.UpdateAsync(entity);
             if (res == false)
             {
-                throw new ValidateException(Resource.ExceptionsResource.Server_Exception);
+                throw new ValidateException(Resource.ExceptionsResource.Update_Error_Exception);
             }
             return new ResultDetails
             {
                 Success = true,
                 Data = res,
+                StatusCode = (int)HttpStatusCode.OK,
+            };
+        }
+
+        public async Task<ResultDetails> DeleteMultiAsync(List<Guid> ids)
+        {
+            var res = await _repository.DeleteMultiAsync(ids);
+            if (res == false)
+            {
+                throw new ValidateException(Resource.ExceptionsResource.Delete_Error_Exception);
+            }
+            return new ResultDetails
+            {
+                Success = true,
+                Data = ids.Count,
                 StatusCode = (int)HttpStatusCode.OK,
             };
         }

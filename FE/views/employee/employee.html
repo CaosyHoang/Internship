@@ -75,13 +75,14 @@
                         </button>
                     </form>
                     <div class="main__header-article-feature">
-                        <button class="button button--symbol main__header-button" title="Xuất Excel">
+                        <button id="btnExport" class="button button--symbol main__header-button" title="Xuất Excel">
                             <img class="button-icon" src="./assets/icon/export-excel-50.png" alt="Xuất Excel">
                         </button>
-                        <button class="button button--symbol main__header-button" title="Nhập Excel">
+                        <button id="btnImport" class="button button--symbol main__header-button" title="Nhập Excel">
+                            <input type="file" id="fileInput" style="display: none;" accept=".xlsx, .xls" />
                             <img class="button-icon" src="./assets/icon/import.png" alt="Nhập Excel">
                         </button>
-                        <button class="button button--symbol main__header-button" title="Xóa">
+                        <button id="btnDeleteMulti" class="button button--symbol main__header-button" title="Xóa">
                             <img class="button-icon" src="./assets/icon/delete-48.png" alt="Xóa">
                         </button>
                         <button id="btnRefresh" class="button button--symbol main__header-button" title="Tải lại">

@@ -109,6 +109,9 @@ E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\EPPlus.dll
+E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\Internship\BE\Api\bin\Debug\net6.0\System.Drawing.Common.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\EPPlus.Interfaces.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\EPPlus.System.Drawing.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
@@ -119,9 +122,6 @@ E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstrac
 E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
-E:\Internship\BE\Api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-E:\Internship\BE\Api\bin\Debug\net6.0\System.Drawing.Common.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\System.Formats.Asn1.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
 E:\Internship\BE\Api\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll

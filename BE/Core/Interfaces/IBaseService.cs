@@ -21,12 +21,19 @@ namespace Core.Interfaces
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<ResultDetails> GetAsync<Y>(Guid id);
         /// <summary>
-        /// Xóa một bản ghi bất kỳ
+        /// Xóa một bản ghi theo id
         /// </summary>
         /// <param name="id">Id</param>
         /// <returns>Trả về danh sách bản ghi</returns>
         /// CreatedBy: Minh Hoàng (08/05/2024)
         Task<ResultDetails> DeleteAsync(Guid id);
+        /// <summary>
+        /// Xóa nhiều bản ghi theo danh sach ids
+        /// </summary>
+        /// <param name="ids">Danh sách id</param>
+        /// <returns>Trả về số lượng ban ghi đã xóa</returns>
+        /// /// CreatedBy: Minh Hoàng (08/05/2024)
+        Task<ResultDetails> DeleteMultiAsync(List<Guid> ids);
         /// <summary>
         /// Sửa một bản ghi
         /// </summary>

@@ -1,0 +1,11 @@
+2024-08-19 21:47:12.7712 ERROR Đã xảy ra lỗi: Định dạng tệp tin Excel không hợp lệ.
+2024-08-19 21:49:57.7399 ERROR Đã xảy ra lỗi: Định dạng Date không hợp lệ, vui lòng nhập đúng format (dd/MM/yyyy).
+2024-08-19 22:00:45.7318 ERROR Đã xảy ra lỗi: Index was outside the bounds of the array.
+2024-08-19 22:02:48.6686 ERROR Đã xảy ra lỗi: Index was outside the bounds of the array.
+2024-08-19 22:04:56.8501 ERROR Đã xảy ra lỗi: Index was outside the bounds of the array.
+2024-08-19 22:05:42.8968 ERROR Đã xảy ra lỗi: Index was outside the bounds of the array.
+2024-08-19 22:30:46.2774 ERROR Đã xảy ra lỗi: Duplicate entry 'Flowers139@nowhere.com' for key 'Employee.UK_Employee_Email'
+2024-08-19 22:43:31.9938 ERROR Đã xảy ra lỗi: Duplicate entry 'Cordero@example.com' for key 'Employee.UK_Employee_Email'
+2024-08-19 23:46:10.1312 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-19 23:46:37.8292 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.
+2024-08-19 23:48:26.4230 ERROR Đã xảy ra lỗi: Mã nhân viên đã tồn tại trong hệ thống.

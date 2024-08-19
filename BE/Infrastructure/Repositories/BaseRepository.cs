@@ -35,11 +35,10 @@ namespace Infrastructure.Repositories
             // Duyệt từng id:
             foreach (var id in ids)
             {
-                if (await _context.DeleteAsync<T>(id) != 0)
+                if (await _context.DeleteAsync<T>(id) == 0)
                 {
                     // Khôi phục lại trạng thái ban đầu:
                     _context.Transaction.Rollback();
-                    return false;
                     throw new ValidateException(Core.Resource.ExceptionsResource.Delete_Error_Exception);
                 }
             }
@@ -103,11 +102,10 @@ namespace Infrastructure.Repositories
             // Duyệt từng entity:
             foreach (var entity in entities)
             {
-                if (await _context.InsertAsync(entity) != 0)
+                if (await _context.InsertAsync(entity) == 0)
                 {
                     // Khôi phục lại trạng thái ban đầu:
                     _context.Transaction.Rollback();
-                    return false;
                     throw new ValidateException(Core.Resource.ExceptionsResource.Insert_Error_Exception);
                 }
             }

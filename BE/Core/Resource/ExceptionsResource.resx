@@ -150,4 +150,7 @@
   <data name="Server_Exception" xml:space="preserve">
     <value>Internal Server Error.</value>
   </data>
+  <data name="Update_Error_Exception" xml:space="preserve">
+    <value>Có lỗi trong quá trình cập nhật.</value>
+  </data>
 </root>

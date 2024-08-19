@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Core.DTOs;
 using Core.Entities;
+using Core.Enum;
 using Core.Exceptions;
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OfficeOpenXml;
+using OfficeOpenXml.Table;
 using System.Net;
 
 namespace Core.Services
@@ -34,11 +37,20 @@ namespace Core.Services
         public async Task<ResultDetails> ExportEmployeeAsync()
         {
             // Lấy danh sách nhân viên:
-            var employees = await _repoManager.Employee.GetAsync();
+            var res = await _repoManager.Employee.GetAsync();
+            // Ánh xạ sang Dto:
+            var employees = _mapper.Map<List<EmployeeDto>>(res);
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Employees");
-                worksheet.Cells["A1"].LoadFromCollection(employees, true, OfficeOpenXml.Table.TableStyles.Medium1);
+                worksheet.Cells["A1"].LoadFromCollection(employees, options =>
+                {
+                    options.PrintHeaders = true;
+                    options.TableStyle = TableStyles.Dark1;
+                });
+                // Tự động điều chỉnh độ rộng cho cell:
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
 
                 // Mã hóa file Excel thành Base64
                 var fileBytes = package.GetAsByteArray();
@@ -94,7 +106,6 @@ namespace Core.Services
                                 "không xác định" => 2,
                                 _ => 2,
                             };
-
                             // Tạo và chèn dữ liệu nhân viên trong excel vào biến lưu trữ:
                             employees.Add(new Employee
                             {
@@ -103,7 +114,7 @@ namespace Core.Services
                                 Email = email,
                                 PhoneNumber = phoneNumber,
                                 IdentityNumber = identityNumber,
-                                DateOfBirth = Transfer.ProcessDateTime(dateOfBirth),
+                                DateOfBirth = Transfer.ProcessExcelDateToDateTime(dateOfBirth),
                                 Gender = gender,
                                 Address = address,
                             });

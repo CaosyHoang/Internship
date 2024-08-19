@@ -5,13 +5,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.DTOs
 {
-    [EpplusTable(
-        TableStyle = TableStyles.Dark1,
-        PrintHeaders = true,
-        AutoCalculate = false,
-        AutofitColumns = true,
-        ShowTotal = true,
-        ShowFirstColumn = true)]
     public class EmployeeDto
     {
         [EpplusIgnore]

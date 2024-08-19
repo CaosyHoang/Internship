@@ -58,6 +58,26 @@
             <returns>Chi tiết request</returns>
             CreatedBy: Minh Hoàng (08/05/2024)
         </member>
+        <member name="M:Api.Controllers.EmployeesController.DeleteMulti(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Xóa nhiều nhân viên theo danh sách ids
+            </summary>
+            <param name="ids">Danh sách id</param>
+            <returns>Chi tiết kết quả</returns>
+        </member>
+        <member name="M:Api.Controllers.EmployeesController.Export">
+            <summary>
+            Export danh sách nhân viên
+            </summary>
+            <returns>Chi tiết kết quả</returns>
+        </member>
+        <member name="M:Api.Controllers.EmployeesController.Import(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Import danh sách nhân viên đến cơ sở dữ liệu
+            </summary>
+            <param name="file">File excel chứa danh sách nhân viên</param>
+            <returns>Chi tiết kết quả</returns>
+        </member>
         <member name="M:Api.Controllers.PositionsController.GetAll">
             <summary>
             Lấy toàn bộ vị trí/ chức vụ

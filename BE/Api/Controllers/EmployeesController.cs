@@ -102,12 +102,44 @@ namespace Api.Controllers
             var res = await _serviceManager.EmployeeService.DeleteAsync(id);
             return Ok(res);
         }
+        /// <summary>
+        /// Xóa nhiều nhân viên theo danh sách ids
+        /// </summary>
+        /// <param name="ids">Danh sách id</param>
+        /// <returns>Chi tiết kết quả</returns>
+        [HttpDelete("multi")]
+        public async Task<IActionResult> DeleteMulti(List<Guid> ids)
+        {
+            var res = await _serviceManager.EmployeeService.DeleteMultiAsync(ids);
+            return Ok(res);
+        }
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] EmployeeDto model)
         {
             // Ánh xạ về kiểu Employee:
             var data = _serviceManager.EmployeeService.MappingObject<Employee>(model);
             var res = await _serviceManager.EmployeeService.UpdateAsync(data);
+            return Ok(res);
+        }
+        /// <summary>
+        /// Export danh sách nhân viên
+        /// </summary>
+        /// <returns>Chi tiết kết quả</returns>
+        [HttpGet("export")]
+        public async Task<IActionResult> Export()
+        {
+            var res = await _serviceManager.EmployeeService.ExportEmployeeAsync();
+            return Ok(res);
+        }
+        /// <summary>
+        /// Import danh sách nhân viên đến cơ sở dữ liệu
+        /// </summary>
+        /// <param name="file">File excel chứa danh sách nhân viên</param>
+        /// <returns>Chi tiết kết quả</returns>
+        [HttpPost("import")]
+        public async Task<IActionResult> Import(IFormFile file)
+        {
+            var res = await _serviceManager.EmployeeService.ImportEmployeeAsync(file);
             return Ok(res);
         }
         #endregion
