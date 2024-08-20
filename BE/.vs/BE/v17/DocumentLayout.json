@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\Internship\\BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|e:\\internship\\be\\api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|solutionrelative:api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C75CDC3E-EDA4-49EF-B25E-9221AC89E07F}|Infrastructure\\Infrastructure.csproj|e:\\internship\\be\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +15,12 @@
       "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\interfaces\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|e:\\internship\\be\\api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA16932E-27B3-49BD-91D6-D8A0B82EFF1A}|Api\\Api.csproj|solutionrelative:api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\interfaces\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|e:\\internship\\be\\core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44BF9955-2ADD-4B60-92E1-D769F9FEE3EE}|Core\\Core.csproj|solutionrelative:core\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +30,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 163,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "BaseService.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Core\\Services\\BaseService.cs",
               "RelativeDocumentMoniker": "Core\\Services\\BaseService.cs",
               "ToolTip": "E:\\Internship\\BE\\Core\\Services\\BaseService.cs",
               "RelativeToolTip": "Core\\Services\\BaseService.cs",
-              "ViewState": "AQIAAI0AAAAAAAAAAAAIwJ0AAAAkAAAA",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAIwJYAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T17:31:04.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-19T17:31:04.851Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "IBaseService.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseService.cs",
               "RelativeDocumentMoniker": "Core\\Interfaces\\IBaseService.cs",
@@ -60,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "IBaseRepository.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Core\\Interfaces\\IBaseRepository.cs",
               "RelativeDocumentMoniker": "Core\\Interfaces\\IBaseRepository.cs",
@@ -73,26 +72,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BaseRepository.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Infrastructure\\Repositories\\BaseRepository.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Repositories\\BaseRepository.cs",
               "ToolTip": "E:\\Internship\\BE\\Infrastructure\\Repositories\\BaseRepository.cs",
               "RelativeToolTip": "Infrastructure\\Repositories\\BaseRepository.cs",
-              "ViewState": "AQIAAFkAAAAAAAAAAAAUwB0AAAAwAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAUwGEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T17:26:53.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "EmployeesController.cs",
               "DocumentMoniker": "E:\\Internship\\BE\\Api\\Controllers\\EmployeesController.cs",
               "RelativeDocumentMoniker": "Api\\Controllers\\EmployeesController.cs",
               "ToolTip": "E:\\Internship\\BE\\Api\\Controllers\\EmployeesController.cs",
               "RelativeToolTip": "Api\\Controllers\\EmployeesController.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAtwG4AAABDAAAA",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAtwHAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T14:32:09.091Z",
               "EditorCaption": ""

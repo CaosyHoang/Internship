@@ -163,14 +163,7 @@ class EmployeePage {
       // Xóa nhiều nhân viên:
       document
         .querySelector("#btnDeleteMulti")
-        .addEventListener("click", () => {
-          let title = "Xác nhận xóa nhân viên";
-          let message = "Bạn có chắc muốn xóa không?";
-          let callback = () => {
-            this.btnRemoveMultiOnClick();
-          };
-          this.displayConfirm(message, title, callback);
-        });
+        .addEventListener("click", this.btnRemoveMultiOnClick.bind(this));
     } catch (error) {
       console.error(error);
     }
@@ -182,7 +175,6 @@ class EmployeePage {
    */
   async loadData() {
     try {
-
       // Gọi api lấy dữ liệu nhân viên:
       let resEmployee = await this.fetchData(
         `https://localhost:44357/api/v1/employees/page?limit=${this.limit}&number=${this.number}`
@@ -597,7 +589,7 @@ class EmployeePage {
    * Xóa các bản ghi được chọn trên bảng
    * Author: Minh Hoàng (14/07/2024)
    */
-  async btnRemoveMultiOnClick() {
+  btnRemoveMultiOnClick() {
     // Lấy ra nhưng row được chọn:
     const row = document.querySelectorAll(
       "#dataTable .table__record.table__record--selected"
@@ -611,12 +603,25 @@ class EmployeePage {
     }
     // Thông báo khi chưa có row nào được chọn:
     if (ids.length <= 0) {
-      // Hiển thị thông báo chưa chọn:
+      // Hiển thị thông báo lỗi chưa chọn:
       let title = "Xóa thông tin nhân viên";
-      let message = `Thành công xóa ${res.data} nhân viên.`;
-      let callback = () => this.btnRefresh();
-      this.displayNotice(res, title, message, callback);
+      let errors = ["Vui lòng chọn nhân viên trước khi xóa!"];
+      this.displayError(errors, title);
+      return;
     }
+    // Thông báo xác nhận xóa không:
+    let title = "Xác nhận xóa nhân viên";
+    let message = "Bạn có chắc muốn xóa không?";
+    let callback = () => {
+      this.handleRemoveMulti(ids);
+    };
+    this.displayConfirm(message, title, callback);
+  }
+  /**
+   * Thực hiện thao tác xóa theo danh sách ids
+   * Author: Minh Hoàng (14/07/2024)
+   */
+  async handleRemoveMulti(ids) {
     // Cấu hình option cho phương thức Delete:
     let option = {
       method: "DELETE",
@@ -636,7 +641,6 @@ class EmployeePage {
     let callback = () => this.btnRefresh();
     this.displayNotice(res, title, message, callback);
   }
-
   /**
    * Xử lý sự kiện chọn combobox
    * Author: Minh Hoàng (14/07/2024)
@@ -852,16 +856,15 @@ class EmployeePage {
       });
   }
   /**
-   * Hiển thị thông báo kèm các lỗi được chuyền vào
+   * Hiển thị thông báo các lỗi
    * Author: Minh Hoàng (14/07/2024)
    */
-  displayError(errors) {
+  displayError(errors, title) {
     // Hiển thị thông báo lên:
     const dialogNotice = document.querySelector("#notice");
     dialogNotice.parentElement.style.visibility = "visible";
     // Thay đổi tiêu đề thông báo:
-    dialogNotice.querySelector(".modal__header-title").innerHTML =
-      "Dữ liệu không hợp lệ";
+    dialogNotice.querySelector(".modal__header-title").innerHTML = title;
     // Duyệt từng nội dung thông báo:
     let li = errors.reduce((acc, cur) => {
       return `${acc}
